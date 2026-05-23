@@ -75,6 +75,124 @@ html, body {
   letter-spacing: 2px;
 }
 
+/* === 카테고리 홈 === */
+.home-screen {
+  padding: 8px 0 40px;
+  min-height: 90vh;
+}
+.category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px 4px;
+}
+.category-btn {
+  background: var(--card-bg);
+  border: 1.5px solid var(--divider);
+  border-radius: 14px;
+  padding: 22px 24px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.category-btn:active {
+  transform: scale(0.97);
+}
+.cat-signature {
+  border-left: 6px solid var(--dark-red);
+}
+.cat-classic {
+  border-left: 6px solid var(--gold);
+}
+.cat-soon {
+  border-left: 6px solid #cdc1a8;
+  opacity: 0.6;
+}
+.cat-name {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--dark-red);
+  margin-bottom: 4px;
+  font-family: 'Noto Serif KR', serif;
+}
+.cat-soon .cat-name {
+  color: var(--gray);
+}
+.cat-desc {
+  font-size: 13px;
+  color: var(--gray);
+}
+
+/* === 클래식 칵테일 그리드 === */
+.classic-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 16px 4px;
+}
+.classic-card {
+  background: var(--card-bg);
+  border: 1.5px solid #e7d6b3;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.classic-card:active {
+  transform: scale(0.96);
+}
+.classic-card-inner {
+  padding: 20px 16px;
+  text-align: center;
+  position: relative;
+}
+.grid-star {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  color: var(--gold);
+  font-size: 16px;
+}
+.classic-grid-name {
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--dark-red);
+  font-family: 'Noto Serif KR', serif;
+  margin-bottom: 4px;
+}
+.classic-grid-en {
+  font-size: 10px;
+  color: var(--gray);
+  letter-spacing: 0.8px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  min-height: 13px;
+}
+.classic-grid-price {
+  font-size: 13px;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.star-badge {
+  display: inline-block;
+  background: var(--gold);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 12px;
+  margin: 0 3px;
+}
+.nonalc-badge {
+  display: inline-block;
+  background: #6e8c4a;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 12px;
+  margin: 0 3px;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -454,13 +572,53 @@ html, body {
 </head>
 <body>
 <div class="app">
-  
-  <!-- 메인 그리드 화면 -->
-  <div class="grid-screen" id="grid-screen">
+
+  <!-- ===== 홈 화면 (카테고리 선택) ===== -->
+  <div class="home-screen" id="home-screen">
     <div class="app-title">
       <h1>주신당 강남점</h1>
-      <div class="sub">12지신 시그니처 칵테일</div>
+      <div class="sub">칵테일 · 주류 매뉴얼</div>
       <div class="deco">정성 · 신기함 · 재미</div>
+    </div>
+    <div class="category-list">
+      <div class="category-btn cat-signature" onclick="openCategory('signature')">
+        <div class="cat-name">12지신 시그니처</div>
+        <div class="cat-desc">12종 · 스토리텔링 칵테일</div>
+      </div>
+      <div class="category-btn cat-classic" onclick="openCategory('classic')">
+        <div class="cat-name">클래식 칵테일</div>
+        <div class="cat-desc">11종 · 전 세계 클래식</div>
+      </div>
+      <div class="category-btn cat-soon" onclick="comingSoon()">
+        <div class="cat-name">전통주</div>
+        <div class="cat-desc">준비 중</div>
+      </div>
+      <div class="category-btn cat-soon" onclick="comingSoon()">
+        <div class="cat-name">위스키</div>
+        <div class="cat-desc">준비 중</div>
+      </div>
+      <div class="category-btn cat-soon" onclick="comingSoon()">
+        <div class="cat-name">스페셜 추천 주류</div>
+        <div class="cat-desc">준비 중</div>
+      </div>
+      <div class="category-btn cat-soon" onclick="comingSoon()">
+        <div class="cat-name">생맥주</div>
+        <div class="cat-desc">준비 중</div>
+      </div>
+    </div>
+    <div class="app-footer">
+      카테고리를 선택하세요
+    </div>
+  </div>
+
+  <!-- ===== 12지신 그리드 ===== -->
+  <div class="grid-screen" id="grid-screen" style="display:none;">
+    <div class="detail-header">
+      <button class="back-btn" onclick="goHome()">← 홈으로</button>
+    </div>
+    <div class="app-title" style="padding-top:8px;">
+      <h1>12지신 시그니처</h1>
+      <div class="sub">탭하면 상세 멘트가 나옵니다</div>
     </div>
     <div class="grid">
       
@@ -584,12 +742,132 @@ html, body {
     </div>
     
     </div>
-    <div class="app-footer">
-      칵테일을 탭하면 상세 멘트가 나옵니다
+  </div>
+
+  <!-- ===== 클래식 칵테일 그리드 ===== -->
+  <div class="grid-screen" id="classic-grid-screen" style="display:none;">
+    <div class="detail-header">
+      <button class="back-btn" onclick="goHome()">← 홈으로</button>
+    </div>
+    <div class="app-title" style="padding-top:8px;">
+      <h1>클래식 칵테일</h1>
+      <div class="sub">탭하면 칵테일 이야기가 나옵니다</div>
+    </div>
+    <div class="classic-grid">
+      
+    <div class="grid-card classic-card" onclick="showClassic(1)">
+      <div class="classic-card-inner">
+        
+        <div class="classic-grid-name">진토닉</div>
+        <div class="classic-grid-en">GIN & TONIC</div>
+        <div class="classic-grid-price">15,000원</div>
+      </div>
+    </div>
+    
+
+    <div class="grid-card classic-card" onclick="showClassic(2)">
+      <div class="classic-card-inner">
+        
+        <div class="classic-grid-name">모스코뮬</div>
+        <div class="classic-grid-en">MOSCOW MULE</div>
+        <div class="classic-grid-price">19,000원</div>
+      </div>
+    </div>
+    
+
+    <div class="grid-card classic-card" onclick="showClassic(3)">
+      <div class="classic-card-inner">
+        
+        <div class="classic-grid-name">모히또</div>
+        <div class="classic-grid-en">MOJITO</div>
+        <div class="classic-grid-price">21,000원</div>
+      </div>
+    </div>
+    
+
+    <div class="grid-card classic-card" onclick="showClassic(4)">
+      <div class="classic-card-inner">
+        <div class="grid-star">★</div>
+        <div class="classic-grid-name">카카오피즈</div>
+        <div class="classic-grid-en">CACAO FIZZ</div>
+        <div class="classic-grid-price">20,000원</div>
+      </div>
+    </div>
+    
+
+    <div class="grid-card classic-card" onclick="showClassic(5)">
+      <div class="classic-card-inner">
+        <div class="grid-star">★</div>
+        <div class="classic-grid-name">콜드브루 마티니</div>
+        <div class="classic-grid-en">COLD BREW MARTINI</div>
+        <div class="classic-grid-price">23,000원</div>
+      </div>
+    </div>
+    
+
+    <div class="grid-card classic-card" onclick="showClassic(6)">
+      <div class="classic-card-inner">
+        
+        <div class="classic-grid-name">깔루아 밀크</div>
+        <div class="classic-grid-en">KAHLUA MILK</div>
+        <div class="classic-grid-price">16,000원</div>
+      </div>
+    </div>
+    
+
+    <div class="grid-card classic-card" onclick="showClassic(7)">
+      <div class="classic-card-inner">
+        
+        <div class="classic-grid-name">갓파더</div>
+        <div class="classic-grid-en">GOD FATHER</div>
+        <div class="classic-grid-price">19,000원</div>
+      </div>
+    </div>
+    
+
+    <div class="grid-card classic-card" onclick="showClassic(8)">
+      <div class="classic-card-inner">
+        <div class="grid-star">★</div>
+        <div class="classic-grid-name">차이나 블루</div>
+        <div class="classic-grid-en">CHINA BLUE</div>
+        <div class="classic-grid-price">20,000원</div>
+      </div>
+    </div>
+    
+
+    <div class="grid-card classic-card" onclick="showClassic(9)">
+      <div class="classic-card-inner">
+        
+        <div class="classic-grid-name">롱아일랜드 아이스티</div>
+        <div class="classic-grid-en">LONG ISLAND ICED TEA</div>
+        <div class="classic-grid-price">23,000원</div>
+      </div>
+    </div>
+    
+
+    <div class="grid-card classic-card" onclick="showClassic(10)">
+      <div class="classic-card-inner">
+        <div class="grid-star">★</div>
+        <div class="classic-grid-name">뉴욕 사워</div>
+        <div class="classic-grid-en">NEW YORK SOUR</div>
+        <div class="classic-grid-price">20,000원</div>
+      </div>
+    </div>
+    
+
+    <div class="grid-card classic-card" onclick="showClassic(11)">
+      <div class="classic-card-inner">
+        
+        <div class="classic-grid-name">어패런트 사워</div>
+        <div class="classic-grid-en">APPARENT SOUR</div>
+        <div class="classic-grid-price">20,000원</div>
+      </div>
+    </div>
+    
     </div>
   </div>
 
-  <!-- 상세 페이지들 -->
+  <!-- 12지신 상세 페이지들 -->
   
     <div class="detail-card" id="detail-1" style="display:none;">
       <div class="detail-header">
@@ -1662,13 +1940,368 @@ html, body {
       </div>
     </div>
     
+
+  <!-- 클래식 칵테일 상세 페이지들 -->
+  
+    <div class="detail-card" id="classic-detail-1" style="display:none;">
+      <div class="detail-header">
+        <button class="back-btn" onclick="showClassicGrid()">← 클래식 칵테일 목록</button>
+      </div>
+      <div class="detail-title-block" style="margin-top:20px;">
+        <h1 class="card-kr" style="font-size:38px;">진토닉</h1>
+        <div class="card-en">GIN & TONIC</div>
+        <div class="card-price">15,000원</div>
+        <div style="margin-top:8px;"></div>
+      </div>
+      <div class="section-divider"></div>
+      <div class="quick-list">
+        <div class="quick-row"><div class="quick-label">재료</div><div class="quick-value">진, 라임, 토닉워터</div></div>
+      </div>
+      <div class="section-divider"></div>
+      <div class="section-title">◆ 칵테일 이야기</div>
+      <div class="ment-box">
+        <p class="ment-line">19세기 영국 식민지 인도에서 시작됐어요. 당시 말라리아 예방약으로 쓰던 '퀴닌'이 너무 써서, 그걸 먹기 좋게 만들려고 진·설탕·라임·소다를 섞은 게 시작이에요.</p>
+<p class="ment-line">약으로 마시던 게 너무 맛있어서 결국 칵테일로 자리잡았어요. 토닉워터 특유의 쌉싸름함이 바로 그 퀴닌에서 온 맛이에요.</p>
+<p class="ment-line">진의 허브 향과 토닉의 쌉쌀함이 깔끔하게 맞아떨어지는, 가장 클래식한 하이볼이에요.</p>
+      </div>
+      <div class="detail-footer">
+        <button class="nav-btn" onclick="showClassic(11)">← 이전</button>
+        <button class="back-btn-bottom" onclick="showClassicGrid()">목록으로</button>
+        <button class="nav-btn" onclick="showClassic(2)">다음 →</button>
+      </div>
+    </div>
+    
+
+    <div class="detail-card" id="classic-detail-2" style="display:none;">
+      <div class="detail-header">
+        <button class="back-btn" onclick="showClassicGrid()">← 클래식 칵테일 목록</button>
+      </div>
+      <div class="detail-title-block" style="margin-top:20px;">
+        <h1 class="card-kr" style="font-size:38px;">모스코뮬</h1>
+        <div class="card-en">MOSCOW MULE</div>
+        <div class="card-price">19,000원</div>
+        <div style="margin-top:8px;"><span class="nonalc-badge">논알콜 가능</span></div>
+      </div>
+      <div class="section-divider"></div>
+      <div class="quick-list">
+        <div class="quick-row"><div class="quick-label">재료</div><div class="quick-value">보드카, 라임, 아로마틱 비터, 진저비어</div></div>
+      </div>
+      <div class="section-divider"></div>
+      <div class="section-title">◆ 칵테일 이야기</div>
+      <div class="ment-box">
+        <p class="ment-line">이름은 '모스크바'지만 실제로는 1940년대 미국에서 탄생했어요. 안 팔리던 보드카, 안 팔리던 진저비어, 안 팔리던 구리잔 — 세 가지 재고를 처리하려던 사람들이 합심해서 만든 칵테일이에요.</p>
+<p class="ment-line">보드카(러시아 이미지)라서 '모스코', 진저비어의 톡 쏘는 킥 때문에 '뮬(노새)'이라는 이름이 붙었어요.</p>
+<p class="ment-line">구리잔에 담는 게 시그니처인데, 구리가 차가움을 오래 유지해줘서 끝까지 시원하게 즐길 수 있어요. 진저비어의 알싸함이 매력이에요.</p>
+<p class="ment-line">논알콜로도 주문 가능합니다.</p>
+      </div>
+      <div class="detail-footer">
+        <button class="nav-btn" onclick="showClassic(1)">← 이전</button>
+        <button class="back-btn-bottom" onclick="showClassicGrid()">목록으로</button>
+        <button class="nav-btn" onclick="showClassic(3)">다음 →</button>
+      </div>
+    </div>
+    
+
+    <div class="detail-card" id="classic-detail-3" style="display:none;">
+      <div class="detail-header">
+        <button class="back-btn" onclick="showClassicGrid()">← 클래식 칵테일 목록</button>
+      </div>
+      <div class="detail-title-block" style="margin-top:20px;">
+        <h1 class="card-kr" style="font-size:38px;">모히또</h1>
+        <div class="card-en">MOJITO</div>
+        <div class="card-price">21,000원</div>
+        <div style="margin-top:8px;"><span class="nonalc-badge">논알콜 가능</span></div>
+      </div>
+      <div class="section-divider"></div>
+      <div class="quick-list">
+        <div class="quick-row"><div class="quick-label">재료</div><div class="quick-value">럼, 민트, 라임, 아몬드, 소다</div></div>
+      </div>
+      <div class="section-divider"></div>
+      <div class="section-title">◆ 칵테일 이야기</div>
+      <div class="ment-box">
+        <p class="ment-line">쿠바 아바나에서 태어난 칵테일이에요. 럼에 민트와 라임을 넣어 더운 날씨에 딱 맞게 만든 청량한 술이에요.</p>
+<p class="ment-line">헤밍웨이가 사랑한 칵테일로 유명해요. 아바나의 'La Bodeguita del Medio'라는 바를 자주 찾았다고 알려져 있어요.</p>
+<p class="ment-line">민트를 으깨서 향을 끌어내는 게 핵심이에요. 라임의 상큼함, 민트의 청량함이 더운 날 갈증을 시원하게 풀어줘요.</p>
+<p class="ment-line">논알콜로도 주문 가능합니다.</p>
+      </div>
+      <div class="detail-footer">
+        <button class="nav-btn" onclick="showClassic(2)">← 이전</button>
+        <button class="back-btn-bottom" onclick="showClassicGrid()">목록으로</button>
+        <button class="nav-btn" onclick="showClassic(4)">다음 →</button>
+      </div>
+    </div>
+    
+
+    <div class="detail-card" id="classic-detail-4" style="display:none;">
+      <div class="detail-header">
+        <button class="back-btn" onclick="showClassicGrid()">← 클래식 칵테일 목록</button>
+      </div>
+      <div class="detail-title-block" style="margin-top:20px;">
+        <h1 class="card-kr" style="font-size:38px;">카카오피즈</h1>
+        <div class="card-en">CACAO FIZZ</div>
+        <div class="card-price">20,000원</div>
+        <div style="margin-top:8px;"><span class="star-badge">★ 추천</span></div>
+      </div>
+      <div class="section-divider"></div>
+      <div class="quick-list">
+        <div class="quick-row"><div class="quick-label">재료</div><div class="quick-value">카카오 리큐르, 레몬, 초콜릿 소다</div></div>
+      </div>
+      <div class="section-divider"></div>
+      <div class="section-title">◆ 칵테일 이야기</div>
+      <div class="ment-box">
+        <p class="ment-line">'피즈(Fizz)'는 19세기 미국에서 유행한 칵테일 스타일이에요. 술에 레몬·설탕·소다를 넣어 탄산감 있게 만든 게 피즈예요. '피즈'라는 이름 자체가 탄산이 터지는 소리에서 왔어요.</p>
+<p class="ment-line">주신당의 카카오피즈는 그 클래식 피즈 공식에 카카오 리큐르와 초콜릿 소다를 더한 버전이에요.</p>
+<p class="ment-line">초콜릿의 달콤함과 레몬의 상큼함, 톡 쏘는 탄산이 어우러져서 디저트 같은 느낌이에요. 단 거 좋아하시는 분께 추천해요.</p>
+<p class="ment-line">★ 주신당 추천 메뉴예요.</p>
+      </div>
+      <div class="detail-footer">
+        <button class="nav-btn" onclick="showClassic(3)">← 이전</button>
+        <button class="back-btn-bottom" onclick="showClassicGrid()">목록으로</button>
+        <button class="nav-btn" onclick="showClassic(5)">다음 →</button>
+      </div>
+    </div>
+    
+
+    <div class="detail-card" id="classic-detail-5" style="display:none;">
+      <div class="detail-header">
+        <button class="back-btn" onclick="showClassicGrid()">← 클래식 칵테일 목록</button>
+      </div>
+      <div class="detail-title-block" style="margin-top:20px;">
+        <h1 class="card-kr" style="font-size:38px;">콜드브루 마티니</h1>
+        <div class="card-en">COLD BREW MARTINI</div>
+        <div class="card-price">23,000원</div>
+        <div style="margin-top:8px;"><span class="star-badge">★ 추천</span></div>
+      </div>
+      <div class="section-divider"></div>
+      <div class="quick-list">
+        <div class="quick-row"><div class="quick-label">재료</div><div class="quick-value">데킬라, 커피 리큐르, 오렌지, 콜드브루</div></div>
+      </div>
+      <div class="section-divider"></div>
+      <div class="section-title">◆ 칵테일 이야기</div>
+      <div class="ment-box">
+        <p class="ment-line">원조는 '에스프레소 마티니'예요. 1980년대 런던에서 한 모델이 바텐더에게 '잠 깨면서 취하게 해줄 음료'를 주문한 데서 탄생한 칵테일이에요.</p>
+<p class="ment-line">보통 보드카로 만들지만, 주신당은 데킬라로 변주했어요. 데킬라 특유의 풍미가 커피와 만나서 더 깊은 맛을 내요.</p>
+<p class="ment-line">콜드브루의 진한 커피 향과 오렌지의 산뜻함이 어우러져요. 카페인이 들어가서 '취하지만 졸리지 않은' 칵테일이에요. 식후에 특히 잘 어울려요.</p>
+<p class="ment-line">★ 주신당 추천 메뉴예요.</p>
+      </div>
+      <div class="detail-footer">
+        <button class="nav-btn" onclick="showClassic(4)">← 이전</button>
+        <button class="back-btn-bottom" onclick="showClassicGrid()">목록으로</button>
+        <button class="nav-btn" onclick="showClassic(6)">다음 →</button>
+      </div>
+    </div>
+    
+
+    <div class="detail-card" id="classic-detail-6" style="display:none;">
+      <div class="detail-header">
+        <button class="back-btn" onclick="showClassicGrid()">← 클래식 칵테일 목록</button>
+      </div>
+      <div class="detail-title-block" style="margin-top:20px;">
+        <h1 class="card-kr" style="font-size:38px;">깔루아 밀크</h1>
+        <div class="card-en">KAHLUA MILK</div>
+        <div class="card-price">16,000원</div>
+        <div style="margin-top:8px;"></div>
+      </div>
+      <div class="section-divider"></div>
+      <div class="quick-list">
+        <div class="quick-row"><div class="quick-label">재료</div><div class="quick-value">커피 리큐르, 크림, 우유, 커피웨이퍼</div></div>
+      </div>
+      <div class="section-divider"></div>
+      <div class="section-title">◆ 칵테일 이야기</div>
+      <div class="ment-box">
+        <p class="ment-line">'깔루아'는 멕시코산 커피 리큐르 브랜드예요. 커피 원두와 럼, 바닐라로 만든 달콤한 술이에요.</p>
+<p class="ment-line">그 깔루아에 우유를 섞은 게 깔루아 밀크예요. 칵테일 입문자도 부담 없이 마실 수 있는 가장 순하고 달콤한 칵테일 중 하나예요.</p>
+<p class="ment-line">달콤한 커피우유 같은 맛이라 술이 약하거나, 디저트처럼 마시고 싶은 분께 잘 맞아요. 커피웨이퍼를 곁들여 더 디저트 같은 느낌을 살렸어요.</p>
+      </div>
+      <div class="detail-footer">
+        <button class="nav-btn" onclick="showClassic(5)">← 이전</button>
+        <button class="back-btn-bottom" onclick="showClassicGrid()">목록으로</button>
+        <button class="nav-btn" onclick="showClassic(7)">다음 →</button>
+      </div>
+    </div>
+    
+
+    <div class="detail-card" id="classic-detail-7" style="display:none;">
+      <div class="detail-header">
+        <button class="back-btn" onclick="showClassicGrid()">← 클래식 칵테일 목록</button>
+      </div>
+      <div class="detail-title-block" style="margin-top:20px;">
+        <h1 class="card-kr" style="font-size:38px;">갓파더</h1>
+        <div class="card-en">GOD FATHER</div>
+        <div class="card-price">19,000원</div>
+        <div style="margin-top:8px;"></div>
+      </div>
+      <div class="section-divider"></div>
+      <div class="quick-list">
+        <div class="quick-row"><div class="quick-label">재료</div><div class="quick-value">위스키, 살구씨 리큐르, 초콜릿 비터</div></div>
+      </div>
+      <div class="section-divider"></div>
+      <div class="section-title">◆ 칵테일 이야기</div>
+      <div class="ment-box">
+        <p class="ment-line">영화 '대부(The Godfather)'에서 이름을 따온 칵테일이에요. 1970년대에 만들어졌고, 이탈리아 마피아를 다룬 그 영화의 무게감 있는 분위기를 담았어요.</p>
+<p class="ment-line">위스키에 '아마레토'라는 살구씨 리큐르를 섞는 게 클래식 공식이에요. 아마레토가 이탈리아 술이라서 '대부'와 연결돼요.</p>
+<p class="ment-line">위스키의 묵직함에 아마레토의 아몬드 같은 단 향이 더해져서, 강하지만 부드럽게 넘어가요. 위스키 좋아하시는 분께 추천해요.</p>
+      </div>
+      <div class="detail-footer">
+        <button class="nav-btn" onclick="showClassic(6)">← 이전</button>
+        <button class="back-btn-bottom" onclick="showClassicGrid()">목록으로</button>
+        <button class="nav-btn" onclick="showClassic(8)">다음 →</button>
+      </div>
+    </div>
+    
+
+    <div class="detail-card" id="classic-detail-8" style="display:none;">
+      <div class="detail-header">
+        <button class="back-btn" onclick="showClassicGrid()">← 클래식 칵테일 목록</button>
+      </div>
+      <div class="detail-title-block" style="margin-top:20px;">
+        <h1 class="card-kr" style="font-size:38px;">차이나 블루</h1>
+        <div class="card-en">CHINA BLUE</div>
+        <div class="card-price">20,000원</div>
+        <div style="margin-top:8px;"><span class="star-badge">★ 추천</span></div>
+      </div>
+      <div class="section-divider"></div>
+      <div class="quick-list">
+        <div class="quick-row"><div class="quick-label">재료</div><div class="quick-value">리치 리큐르, 오렌지 리큐르, 자몽, 라치젤리</div></div>
+      </div>
+      <div class="section-divider"></div>
+      <div class="section-title">◆ 칵테일 이야기</div>
+      <div class="ment-box">
+        <p class="ment-line">1980년대 일본에서 탄생한 칵테일이에요. '디타(DITA)'라는 리치 리큐르를 알리려고 만들어진 술인데, 지금은 전 세계적인 클래식이 됐어요.</p>
+<p class="ment-line">리치의 이국적인 단 향과 자몽의 쌉쌀함이 어우러진 게 매력이에요. 선명한 푸른빛 때문에 '차이나 블루'라는 이름이 붙었어요.</p>
+<p class="ment-line">달콤하면서도 자몽 덕에 끝맛이 깔끔해요. 비주얼도 예뻐서 사진 찍기 좋은 칵테일이에요.</p>
+<p class="ment-line">★ 주신당 추천 메뉴예요.</p>
+      </div>
+      <div class="detail-footer">
+        <button class="nav-btn" onclick="showClassic(7)">← 이전</button>
+        <button class="back-btn-bottom" onclick="showClassicGrid()">목록으로</button>
+        <button class="nav-btn" onclick="showClassic(9)">다음 →</button>
+      </div>
+    </div>
+    
+
+    <div class="detail-card" id="classic-detail-9" style="display:none;">
+      <div class="detail-header">
+        <button class="back-btn" onclick="showClassicGrid()">← 클래식 칵테일 목록</button>
+      </div>
+      <div class="detail-title-block" style="margin-top:20px;">
+        <h1 class="card-kr" style="font-size:38px;">롱아일랜드 아이스티</h1>
+        <div class="card-en">LONG ISLAND ICED TEA</div>
+        <div class="card-price">23,000원</div>
+        <div style="margin-top:8px;"></div>
+      </div>
+      <div class="section-divider"></div>
+      <div class="quick-list">
+        <div class="quick-row"><div class="quick-label">재료</div><div class="quick-value">럼, 진, 보드카, 데킬라, 오렌지 리큐르</div></div>
+      </div>
+      <div class="section-divider"></div>
+      <div class="section-title">◆ 칵테일 이야기</div>
+      <div class="ment-box">
+        <p class="ment-line">1972년 미국 뉴욕 롱아일랜드의 한 바에서 탄생했어요. '오렌지 리큐르를 활용한 칵테일' 대회에 출품하려고 바텐더가 만든 술이에요.</p>
+<p class="ment-line">이름에 '아이스티'가 들어가지만 차(tea)는 한 방울도 안 들어가요. 여러 술을 섞었을 때 색깔이 홍차처럼 보여서 붙은 이름이에요.</p>
+<p class="ment-line">럼·진·보드카·데킬라 — 무려 4가지 베이스 술이 들어가서 도수가 꽤 높아요. 그런데 콜라와 레몬 덕에 의외로 부드럽게 넘어가요. 강한 술을 찾으시는 분께 추천해요.</p>
+      </div>
+      <div class="detail-footer">
+        <button class="nav-btn" onclick="showClassic(8)">← 이전</button>
+        <button class="back-btn-bottom" onclick="showClassicGrid()">목록으로</button>
+        <button class="nav-btn" onclick="showClassic(10)">다음 →</button>
+      </div>
+    </div>
+    
+
+    <div class="detail-card" id="classic-detail-10" style="display:none;">
+      <div class="detail-header">
+        <button class="back-btn" onclick="showClassicGrid()">← 클래식 칵테일 목록</button>
+      </div>
+      <div class="detail-title-block" style="margin-top:20px;">
+        <h1 class="card-kr" style="font-size:38px;">뉴욕 사워</h1>
+        <div class="card-en">NEW YORK SOUR</div>
+        <div class="card-price">20,000원</div>
+        <div style="margin-top:8px;"><span class="star-badge">★ 추천</span></div>
+      </div>
+      <div class="section-divider"></div>
+      <div class="quick-list">
+        <div class="quick-row"><div class="quick-label">재료</div><div class="quick-value">위스키, 레몬, 레드와인</div></div>
+      </div>
+      <div class="section-divider"></div>
+      <div class="section-title">◆ 칵테일 이야기</div>
+      <div class="ment-box">
+        <p class="ment-line">'사워(Sour)'는 술에 레몬과 설탕을 넣어 새콤달콤하게 만든 칵테일 계열이에요. 그중 위스키 사워에 레드와인을 띄운 게 뉴욕 사워예요.</p>
+<p class="ment-line">1880년대 미국에서 탄생했어요. 시카고에서 시작됐다는 설도 있지만 '뉴욕 사워'라는 이름으로 굳어졌어요.</p>
+<p class="ment-line">위스키 사워 위에 레드와인을 살짝 부으면, 와인이 가라앉으면서 위아래 색이 나뉘는 게 시그니처예요. 새콤한 위스키 사워에 와인의 떫고 깊은 맛이 얹어져요.</p>
+<p class="ment-line">★ 주신당 추천 메뉴예요.</p>
+      </div>
+      <div class="detail-footer">
+        <button class="nav-btn" onclick="showClassic(9)">← 이전</button>
+        <button class="back-btn-bottom" onclick="showClassicGrid()">목록으로</button>
+        <button class="nav-btn" onclick="showClassic(11)">다음 →</button>
+      </div>
+    </div>
+    
+
+    <div class="detail-card" id="classic-detail-11" style="display:none;">
+      <div class="detail-header">
+        <button class="back-btn" onclick="showClassicGrid()">← 클래식 칵테일 목록</button>
+      </div>
+      <div class="detail-title-block" style="margin-top:20px;">
+        <h1 class="card-kr" style="font-size:38px;">어패런트 사워</h1>
+        <div class="card-en">APPARENT SOUR</div>
+        <div class="card-price">20,000원</div>
+        <div style="margin-top:8px;"></div>
+      </div>
+      <div class="section-divider"></div>
+      <div class="quick-list">
+        <div class="quick-row"><div class="quick-label">재료</div><div class="quick-value">오렌지비터 리큐르, 엘더플라워 리큐르, 라임</div></div>
+      </div>
+      <div class="section-divider"></div>
+      <div class="section-title">◆ 칵테일 이야기</div>
+      <div class="ment-box">
+        <p class="ment-line">'사워' 스타일을 베이스로 한 칵테일이에요. 사워는 술에 새콤한 시트러스와 단맛을 더해 균형을 맞춘 칵테일 계열이에요.</p>
+<p class="ment-line">오렌지 비터의 쌉쌀한 향과 엘더플라워(딱총나무 꽃) 리큐르의 우아한 꽃향이 어우러져요.</p>
+<p class="ment-line">라임의 산뜻한 산미가 더해져서 향긋하면서도 깔끔하게 떨어지는 맛이에요. 플로럴한 향을 좋아하시는 분께 잘 맞아요.</p>
+      </div>
+      <div class="detail-footer">
+        <button class="nav-btn" onclick="showClassic(10)">← 이전</button>
+        <button class="back-btn-bottom" onclick="showClassicGrid()">목록으로</button>
+        <button class="nav-btn" onclick="showClassic(1)">다음 →</button>
+      </div>
+    </div>
+    
   
 </div>
 
 <script>
-function showCard(idx) {
+// ===== 화면 전환 =====
+function hideAll() {
+  document.getElementById('home-screen').style.display = 'none';
   document.getElementById('grid-screen').style.display = 'none';
+  document.getElementById('classic-grid-screen').style.display = 'none';
   document.querySelectorAll('.detail-card').forEach(el => el.style.display = 'none');
+}
+
+function goHome() {
+  hideAll();
+  document.getElementById('home-screen').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+function openCategory(cat) {
+  hideAll();
+  if (cat === 'signature') {
+    document.getElementById('grid-screen').style.display = 'block';
+  } else if (cat === 'classic') {
+    document.getElementById('classic-grid-screen').style.display = 'block';
+  }
+  window.scrollTo(0, 0);
+}
+
+function comingSoon() {
+  alert('준비 중입니다. 곧 업데이트됩니다.');
+}
+
+// 12지신 상세
+function showCard(idx) {
+  hideAll();
   const card = document.getElementById('detail-' + idx);
   if (card) {
     card.style.display = 'block';
@@ -1677,8 +2310,24 @@ function showCard(idx) {
 }
 
 function showGrid() {
-  document.querySelectorAll('.detail-card').forEach(el => el.style.display = 'none');
+  hideAll();
   document.getElementById('grid-screen').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+// 클래식 칵테일 상세
+function showClassic(idx) {
+  hideAll();
+  const card = document.getElementById('classic-detail-' + idx);
+  if (card) {
+    card.style.display = 'block';
+    window.scrollTo(0, 0);
+  }
+}
+
+function showClassicGrid() {
+  hideAll();
+  document.getElementById('classic-grid-screen').style.display = 'block';
   window.scrollTo(0, 0);
 }
 
