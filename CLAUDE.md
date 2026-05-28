@@ -1,9 +1,9 @@
-# 주신당 매뉴얼 (bartender-maunals)
+# 주신당 강남점 매뉴얼 (zoosindang-gangnam)
 
 ## 프로젝트 개요
 주신당 강남점의 12지신 칵테일 등 주류 매뉴얼을 담은 모바일 PWA(웹앱).
-매장 직원/바텐더가 휴대폰에서 빠르게 메뉴 정보를 확인하는 용도.
-배포처: https://bartender-maunals.vercel.app (GitHub에 push하면 Vercel이 자동 배포)
+매장 직원이 휴대폰에서 빠르게 메뉴 정보를 확인하는 용도.
+배포처: https://zoosindang-gangnam.vercel.app (GitHub에 push하면 Vercel이 자동 배포)
 
 ## 파일 구조
 - index.html — 앱 전체. HTML + CSS + JS가 한 파일에 들어있음 (약 3,700줄)
