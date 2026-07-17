@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>주신당 출퇴근 QR 포스터 (A4 인쇄용)</title>
+  <!--
+    매장 입구 부착용 A4 포스터.
+    사용법: 이 파일을 브라우저로 열고 Ctrl+P → A4 세로, 여백 "기본" 또는 "없음"으로 인쇄.
+    QR은 파일 안에 내장돼 있어(고정 배포 URL) 이 파일 하나로 완결됨.
+  -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <style>
+    :root {
+      --ink: #1c1a17;
+      --muted: #8a8275;
+      --bg: #f4f1ea;
+      --card: #fffdf8;
+      --line: #e6e0d3;
+      --accent: #e2761b;
+      --go: #2f8f5b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: #777; font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; color: var(--ink); }
+
+    /* A4 = 210mm x 297mm */
+    .sheet {
+      width: 210mm; min-height: 297mm; margin: 10mm auto;
+      background: var(--bg);
+      padding: 16mm 16mm 12mm;
+      display: flex; flex-direction: column; align-items: center;
+      box-shadow: 0 6px 30px rgba(0,0,0,.35);
+    }
+
+    .brand { font-size: 13pt; font-weight: 800; letter-spacing: .35em; color: var(--accent); margin-bottom: 4mm; }
+    h1 { font-size: 34pt; font-weight: 800; letter-spacing: -.02em; text-align: center; line-height: 1.25; }
+    h1 small { display: block; font-size: 13pt; font-weight: 600; color: var(--muted); letter-spacing: .02em; margin-top: 3mm; }
+
+    .qr-card {
+      background: var(--card); border: 1.5pt solid var(--line); border-radius: 8mm;
+      padding: 9mm; margin: 10mm 0 8mm;
+      box-shadow: 0 3mm 10mm rgba(40,30,15,.10);
+    }
+    .qr-card img { display: block; width: 105mm; height: 105mm; image-rendering: pixelated; }
+
+    .scan-hint { font-size: 14pt; font-weight: 800; color: var(--accent); margin-bottom: 9mm; }
+
+    .steps { width: 100%; display: flex; gap: 5mm; }
+    .step {
+      flex: 1; background: var(--card); border: 1pt solid var(--line); border-radius: 5mm;
+      padding: 6mm 4mm; text-align: center;
+    }
+    .step .num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 8mm; height: 8mm; border-radius: 50%;
+      background: var(--accent); color: #fff; font-size: 11pt; font-weight: 800; margin-bottom: 3mm;
+    }
+    .step:last-child .num { background: var(--go); }
+    .step .emo { display: block; font-size: 17pt; margin-bottom: 2mm; }
+    .step b { display: block; font-size: 13pt; font-weight: 800; letter-spacing: -.01em; }
+    .step span { display: block; font-size: 9.5pt; color: var(--muted); margin-top: 1.5mm; line-height: 1.4; }
+
+    .foot {
+      margin-top: auto; padding-top: 8mm; width: 100%;
+      text-align: center; font-size: 10pt; color: var(--muted); line-height: 1.7;
+    }
+    .foot b { color: var(--ink); }
+
+    @page { size: A4 portrait; margin: 0; }
+    @media print {
+      html, body { background: #fff; }
+      .sheet { margin: 0; box-shadow: none; width: 210mm; height: 297mm; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="brand">JUSINDANG</div>
+    <h1>출퇴근은 여기서 찰칵!<small>주신당 강남점 · 근태 기록</small></h1>
+
+    <div class="qr-card">
+      <img alt="출퇴근 기록 QR 코드" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABMQAAATEAQMAAAC+/ku5AAAABlBMVEUcGhf///82U704AAAHQElEQVR42u3dW27bSBAF0MZsgPvfJXfAPBBEUtettudj2Bzg+COII1k+QH76susxrod+nYOMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyM7N/Lxvx1lBde376/cPz625E/pXz86s2vF37K/hlP/SIjIyMjIyMjIyP7v8s+DurHe0T48+359/A+3v/2+4Xy6uvzzr9v+UgOf37iFSTSr5QDyMjIyMjIyMjIyO7NAePzqf2YH+Kf7xFg+mN6S/qoEhDS75ADyMjIyMjIyMjIyLbmgHy+b79d1B/FSiI5gIyMjIyMjIyMjOyp9wHvr86n9c9n/yOXCY2+80AOICMjIyMjIyMjI3tcf0CpBlo94i9P/JurhSkH6A8gIyMjIyMjIyMj25kDRniw/x//YV4QGRkZGRkZGRkZ2dYcsKjsT/cBtaxnMWZovPcRfO/3+t8kIyMjIyMjIyMjuyUHnKEXYHyOB20aiEe8Rqg9A+9p4iyfLAeQkZGRkZGRkZGRbeoTbjYEpL0A06slFrQ3A69fXueLygFkZGRkZGRkZGRkd9cFpVk+eYvwWC4Jq2sCpreMMFxIDiAjIyMjIyMjIyPbNy+oPKsf+XyfTvpt1VC+KBi580AOICMjIyMjIyMjI7t/XtCqjicPFxplo1jpIn5lg6t0HsgBZGRkZGRkZGRkZNv3iE3dwek+ICWC1Da86h0uFUfqgsjIyMjIyMjIyMg23AeU7uCzWyfQV/R0QeLodpDJAWRkZGRkZGRkZGQPqQtK2aCc9K/c+rsIA82yAXVBZGRkZGRkZGRkZNv3iLULA1LD7/V5lj/LwoDSODC6N8sBZGRkZGRkZGRkZPvmBdW+3rZ0qB0Amj++HvyHuiAyMjIyMjIyMjKy3Tmgbg9Le8TSm8tJv/m8tsRIDiAjIyMjIyMjIyO7vy7odWSfntVPfb1HLv8p5US1dGiEHWS5SUAOICMjIyMjIyMjI7stB4xuJUDeEDDyWrFU75MGj5aoIAeQkZGRkZGRkZGRbekTnpYDHOFAn7YBtCsGzvJq6g8oYUAOICMjIyMjIyMjI7s3BzQTfPIcoPzYf4oUZ+gJToNH9QeQkZGRkZGRkZGRbakLWm37KuOD6k7gti4o3TSkmURyABkZGRkZGRkZGdn9fcJXGAA6HdlrXkjFQaPbH7AOF3IAGRkZGRkZGRkZ2d37hNNz/rbD96vdA7VgqISL1+84zA0lIyMjIyMjIyMj21kXVFYJp4f4dbNwHiM6yiVDXldsfwAZGRkZGRkZGRnZrvuAqVInJ4K6TOyrpWMjXA8cYX+ZuiAyMjIyMjIyMjKyLfOC0mP/ZglwuRRIJf/N/KGscR9ARkZGRkZGRkZGtiEHlF6AKxQHfVT7l3+rs4Gmy4N2Dqn7ADIyMjIyMjIyMrJNOaCZDbTY+3Xm8aDr7QL6A8jIyMjIyMjIyMie0R9wLE/rtR14UT90jjh49P2FNInIfQAZGRkZGRkZGRnZhhxQDup1TUB5un92DQHTBNGztBq0e8nkADIyMjIyMjIyMrJN+4RXlf1pNtBXNUCpsKiZOiQHkJGRkZGRkZGRkd29T3j9rD497M9P/NPmsfOrBWNyABkZGRkZGRkZGdmWuaFlXtAotUK5Z+DIaWJKCSNcD+gPICMjIyMjIyMjI3vC3NDRL/86u4+aNopNyWEsbgtqEvG/SUZGRkZGRkZGRnbz3NAr7/ptNwSkMJB/tmYD/QFkZGRkZGRkZGRkO+cFjc96/iPXCrVDg9q9AGmWaLl9OMwLIiMjIyMjIyMjI9s2LygtCTtzKX+6HphSQioxSpNG3QeQkZGRkZGRkZGRbZ4bWpYDTC29tRDoCvNFRygESoEjtRfLAWRkZGRkZGRkZGQ31gXlyv60U2B068JSJ3CNBWmqqPsAMjIyMjIyMjIysn39AWN+iH+GwT/nZ5XPCKf6UTaPlcCRBo/KAWRkZGRkZGRkZGT79gnXep9yeP/GiuCpMTid/oe5oWRkZGRkZGRkZGR794jVnuA03yeXCa2GAeXJQeaGkpGRkZGRkZGRkT1mn3DdH7BoIE5RYZ0rRtg3pi6IjIyMjIyMjIyMbF+f8AhNu+00obowYDrQv96cK4TqR8kBZGRkZGRkZGRkZLfmgKO7Chh5GNB0qi/3Ae01whF+wtxQMjIyMjIyMjIysl05YIQJPuVm4Ar3AaPMEi0DRVNrgP4AMjIyMjIyMjIyssflgGlKUJoWmsp60k+0/QH2B5CRkZGRkZGRkZE9LQdcuTs4Lx2bzvy1iCgXB536A8jIyMjIyMjIyMge1B+Qq3yObtlAMxm0vPkqH6ouiIyMjIyMjIyMjOxp84LOZY1/MzJ0ygHTlcE17yUb+oTJyMjIyMjIyMjInrE/YN/XSUZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkb2XdkPmqBANmUfgwwAAAAASUVORK5CYII=">
+    </div>
+    <div class="scan-hint">📱 폰 카메라를 QR에 갖다 대세요</div>
+
+    <div class="steps">
+      <div class="step">
+        <span class="num">1</span>
+        <span class="emo">📷</span>
+        <b>QR 스캔</b>
+        <span>카메라를 켜고<br>QR을 비추면 끝</span>
+      </div>
+      <div class="step">
+        <span class="num">2</span>
+        <span class="emo">👆</span>
+        <b>내 이름 톡</b>
+        <span>한 번 고르면<br>다음부턴 건너뛰어요</span>
+      </div>
+      <div class="step">
+        <span class="num">3</span>
+        <span class="emo">✅</span>
+        <b>초록 버튼 톡</b>
+        <span>출근·퇴근은<br>자동으로 판단해요</span>
+      </div>
+    </div>
+
+    <div class="foot">
+      <b>매장 와이파이</b>에 연결돼 있어야 기록돼요 · 와이파이가 늦게 붙으면 몇 초만 기다려 주세요<br>
+      기록되면 <b>내 슬랙으로 바로 알림</b>이 가요 · 문의는 관리자에게
+    </div>
+  </div>
+</body>
+</html>
