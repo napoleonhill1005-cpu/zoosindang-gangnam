@@ -552,6 +552,70 @@ html, body {
 .search-empty { padding: 14px 16px; font-size: 13px; color: var(--gray); text-align: center; }
 .list-item.search-hit { border-color: var(--gold); box-shadow: 0 0 0 2px var(--gold); transition: box-shadow 0.3s; }
 
+/* 레시피 (제조용) */
+.recipe-box {
+  background: var(--card-bg);
+  border: 1.5px solid var(--divider);
+  border-left: 5px solid var(--dark-red);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+.recipe-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  font-size: 13px;
+  color: var(--gray);
+  margin-bottom: 10px;
+}
+.recipe-meta b { color: var(--dark-red); font-weight: 700; }
+.recipe-ing-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  padding: 5px 0;
+  border-bottom: 1px dashed var(--soft-bg);
+  font-size: 14px;
+}
+.recipe-ing-row:last-of-type { border-bottom: none; }
+.ri-name { color: var(--ink); word-break: keep-all; }
+.ri-amt { flex-shrink: 0; font-weight: 700; color: var(--gold); }
+.ri-amt.unknown { color: var(--gray); font-weight: 400; font-style: italic; font-size: 12px; }
+.recipe-steps {
+  margin: 10px 0 0;
+  padding: 10px 0 0 22px;
+  border-top: 1px solid var(--soft-bg);
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--ink);
+  word-break: keep-all;
+}
+.recipe-steps li { margin-bottom: 3px; }
+.recipe-garnish {
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--note);
+  word-break: keep-all;
+}
+.recipe-note {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--gray);
+  font-style: italic;
+}
+.recipe-variant {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1.5px dashed var(--divider);
+}
+.recipe-variant-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--dark-red);
+  margin-bottom: 8px;
+}
+
 .ment-box {
   background: var(--card-bg);
   border: 1.5px solid var(--divider);
@@ -2380,6 +2444,9 @@ html, body {
 <div class="quick-row"><div class="quick-label">가니쉬</div><div class="quick-value">치즈 폼, 브라운 치즈, 누룽지 에센스</div></div>
 <div class="quick-row"><div class="quick-label">핵심</div><div class="quick-value">베일리스가 우유·치즈 만나면 치즈케이크 맛으로 변신</div></div>
       </div>
+      <div class="section-divider"></div>
+      <div class="section-title">🍸 레시피 (제조용)</div>
+      <div class="recipe-box"><div class="recipe-meta">기법 <b>빌드</b> · 얼음 <b>5*5 큐브</b> · 글라스 <b>토요사사키 락글라스</b> · 총량 <b>90ml</b></div><div class="recipe-ing-row"><span class="ri-name">베일리스 오리지널</span><span class="ri-amt">30ml</span></div><div class="recipe-ing-row"><span class="ri-name">우유</span><span class="ri-amt">20ml</span></div><div class="recipe-ing-row"><span class="ri-name">크림</span><span class="ri-amt">20ml</span></div><div class="recipe-ing-row"><span class="ri-name">누룽지 시럽</span><span class="ri-amt">20ml</span></div><div class="recipe-ing-row"><span class="ri-name">돌 파인애플 주스</span><span class="ri-amt">12.5ml</span></div><div class="recipe-ing-row"><span class="ri-name">누룽지 에센스</span><span class="ri-amt">2ml</span></div><ol class="recipe-steps"><li>5*5큐브 보석 모양으로 재단</li><li>글라스에 누룽지 에센스 제외 모든 재료 푸어, 5*5큐브 넣고 스터 40회</li><li>치즈 폼 얇게 플롯</li><li>누룽지 에센스 2회 아토마이징</li><li>브라운 치즈로 가운데 가니쉬</li></ol><div class="recipe-garnish">🌿 가니시: 치즈 폼, 브라운치즈, 누룽지 에센스</div></div>
       <div class="detail-footer">
         <button class="nav-btn" onclick="showCard(12)">← 이전</button>
         <button class="back-btn-bottom" onclick="showGrid()">목록으로</button>
@@ -2428,6 +2495,9 @@ html, body {
 <div class="quick-row"><div class="quick-label">가니쉬</div><div class="quick-value">시나몬 파우더, 시나몬 스틱</div></div>
 <div class="quick-row"><div class="quick-label">시연 ★</div><div class="quick-value">소 모형에 뜨거운 물 → 드라이아이스 연기 (촬영 권유)</div></div>
       </div>
+      <div class="section-divider"></div>
+      <div class="section-title">🍸 레시피 (제조용)</div>
+      <div class="recipe-box"><div class="recipe-meta">기법 <b>보스턴 쉐이킹</b> · 얼음 <b>4*4 큐브</b> · 글라스 <b>폴란드 커피머그</b> · 총량 <b>70ml</b></div><div class="recipe-ing-row"><span class="ri-name">통카빈 인퓨즈드 럼</span><span class="ri-amt">17.5ml</span></div><div class="recipe-ing-row"><span class="ri-name">범부</span><span class="ri-amt">8.75ml</span></div><div class="recipe-ing-row"><span class="ri-name">베일리스 오리지널</span><span class="ri-amt">26.25ml</span></div><div class="recipe-ing-row"><span class="ri-name">믹솔로지 스모키 얼그레이 시럽</span><span class="ri-amt">17.5ml</span></div><div class="recipe-ing-row"><span class="ri-name">휘핑크림(서울우유)</span><span class="ri-amt">40ml</span></div><ol class="recipe-steps"><li>칠링한 소 글라스에 4*4 큐브를 넣고 냉동보관(얼음을 글라스 바닥에 붙이기 위함)</li><li>쉐이커에 모든 재료를 푸어</li><li>제빙기 얼음 넣고 25회 쉐이킹</li><li>글라스를 꺼내 더블스트레인하여 푸어</li></ol><div class="recipe-garnish">🌿 가니시: 시나몬파우더, 시나몬스틱(끝에 그을림), 드라이아이스</div></div>
       <div class="detail-footer">
         <button class="nav-btn" onclick="showCard(1)">← 이전</button>
         <button class="back-btn-bottom" onclick="showGrid()">목록으로</button>
@@ -2474,6 +2544,9 @@ html, body {
 <div class="quick-row"><div class="quick-label">가니쉬</div><div class="quick-value">곶감, 잣</div></div>
 <div class="quick-row"><div class="quick-label">디테일</div><div class="quick-value">곶감 내려두기 편하게 받침을 넓게 디자인</div></div>
       </div>
+      <div class="section-divider"></div>
+      <div class="section-title">🍸 레시피 (제조용)</div>
+      <div class="recipe-box"><div class="recipe-meta">기법 <b>코블러 쉐이킹</b> · 얼음 <b>5*5 큐브</b> · 글라스 <b>청자머그</b> · 총량 <b>55ml</b></div><div class="recipe-ing-row"><span class="ri-name">아치23</span><span class="ri-amt">30ml</span></div><div class="recipe-ing-row"><span class="ri-name">스톨리치나야 프리미엄</span><span class="ri-amt">15ml</span></div><div class="recipe-ing-row"><span class="ri-name">믹솔로지 레몬진저 시럽</span><span class="ri-amt">10ml</span></div><div class="recipe-ing-row"><span class="ri-name">프레쉬 레몬주스</span><span class="ri-amt">15ml</span></div><ol class="recipe-steps"><li>쉐이커에 모든 재료를 푸어, 제빙기 얼음 넣고 15회 원포인트 쉐이킹</li><li>더블스트레이너 사용하지 않고 글라스에 푸어</li></ol><div class="recipe-garnish">🌿 가니시: 곶감, 잣(3개)</div></div>
       <div class="detail-footer">
         <button class="nav-btn" onclick="showCard(2)">← 이전</button>
         <button class="back-btn-bottom" onclick="showGrid()">목록으로</button>
@@ -2526,6 +2599,9 @@ html, body {
 <div class="quick-row"><div class="quick-label">표현</div><div class="quick-value">블루레몬=바다, 얼음=육지, 건자두=토끼 간</div></div>
 <div class="quick-row"><div class="quick-label">참여 포인트 ★</div><div class="quick-value">건자두가 뭘 표현한 것 같은지 손님에게 질문</div></div>
       </div>
+      <div class="section-divider"></div>
+      <div class="section-title">🍸 레시피 (제조용)</div>
+      <div class="recipe-box"><div class="recipe-meta">기법 <b>쓰로잉</b> · 얼음 <b>5*5 큐브</b> · 글라스 <b>크리슨 인피니티 슈페리얼 글라스</b> · 총량 <b>70ml</b></div><div class="recipe-ing-row"><span class="ri-name">플럼&amp;요거트 클레리파이드 감홍로</span><span class="ri-amt">70ml</span></div><div class="recipe-ing-row"><span class="ri-name">블루 레몬 인퓨젼</span><span class="ri-amt">7ml</span></div><div class="recipe-ing-row"><span class="ri-name">싱하 소다</span><span class="ri-amt">20ml</span></div><ol class="recipe-steps"><li>쉐이커에 모든 재료를 푸어, 재료가 없는 틴에 제빙기 얼음 5ea 넣고 5회 쓰로잉</li><li>더블스트레이너 사용하지 않고 글라스에 푸어</li><li>소다 필업 후 얼음 리프팅 2~3회(소다 용량이 많으면 칵테일이 묽어지기에 소량, 약 20ml가량만 필업할 것)</li></ol><div class="recipe-garnish">🌿 가니시: 노무라 &amp; 건자두</div></div>
       <div class="detail-footer">
         <button class="nav-btn" onclick="showCard(3)">← 이전</button>
         <button class="back-btn-bottom" onclick="showGrid()">목록으로</button>
@@ -2576,6 +2652,9 @@ html, body {
 <div class="quick-row"><div class="quick-label">가니쉬</div><div class="quick-value">라벤더, 로즈마리, 레몬 픽, 드라이아이스, 주신당 한자 각인</div></div>
 <div class="quick-row"><div class="quick-label">시연 ★</div><div class="quick-value">3단계 퍼포먼스 (촬영→설명→색변화→마무리)</div></div>
       </div>
+      <div class="section-divider"></div>
+      <div class="section-title">🍸 레시피 (제조용)</div>
+      <div class="recipe-box"><div class="recipe-meta">얼음 <b>5*5 큐브(스탬핑)</b> · 글라스 <b>리델 락글라스</b> · 총량 <b>105ml</b></div><div class="recipe-ing-row"><span class="ri-name">고든스</span><span class="ri-amt">20ml</span></div><div class="recipe-ing-row"><span class="ri-name">용 인퓨전(티, 시럽, 파우더)</span><span class="ri-amt">85ml</span></div><div class="recipe-ing-row"><span class="ri-name">프레쉬 레몬주스</span><span class="ri-amt">15ml</span></div><ol class="recipe-steps"><li>다관에 프렙, 다기잔에 레몬주스 따로 푸어</li><li>다관에 드라이아이스 큰거 1개 넣고 마무리</li></ol><div class="recipe-garnish">🌿 가니시: 라벤더&amp;로즈마리&amp;레몬 픽 드라이아이스</div><div class="recipe-variant"><div class="recipe-variant-title">🚫 버진 용 (무알코올)</div><div class="recipe-meta">얼음 <b>5*5 큐브(스탬핑)</b> · 글라스 <b>리델 락글라스</b> · 총량 <b>95ml</b></div><div class="recipe-ing-row"><span class="ri-name">용 인퓨전(티, 시럽, 파우더)</span><span class="ri-amt">95ml</span></div><div class="recipe-ing-row"><span class="ri-name">프레쉬 레몬주스</span><span class="ri-amt">15ml</span></div><ol class="recipe-steps"><li>다관에 프렙, 다기잔에 레몬주스 따로 푸어</li><li>다관에 드라이아이스 큰거 1개 넣고 마무리</li></ol><div class="recipe-garnish">🌿 가니시: 라벤더&amp;로즈마리&amp;레몬 픽 드라이아이스</div></div></div>
       <div class="detail-footer">
         <button class="nav-btn" onclick="showCard(4)">← 이전</button>
         <button class="back-btn-bottom" onclick="showGrid()">목록으로</button>
@@ -2624,6 +2703,9 @@ html, body {
 <div class="quick-row"><div class="quick-label">가니쉬</div><div class="quick-value">금잔화 꽃, 드라이아이스</div></div>
 <div class="quick-row"><div class="quick-label">실용 디테일</div><div class="quick-value">빨대 막히면 반대쪽 사용하라고 2개 드림</div></div>
       </div>
+      <div class="section-divider"></div>
+      <div class="section-title">🍸 레시피 (제조용)</div>
+      <div class="recipe-box"><div class="recipe-meta">기법 <b>코블러 쉐이킹</b> · 얼음 <b>노아이스</b> · 글라스 <b>미니화병</b> · 총량 <b>40ml</b></div><div class="recipe-ing-row"><span class="ri-name">메리골드 인퓨즈드 진</span><span class="ri-amt">16.5ml</span></div><div class="recipe-ing-row"><span class="ri-name">생제르망</span><span class="ri-amt">16.5ml</span></div><div class="recipe-ing-row"><span class="ri-name">소백산 아카시아 허니</span><span class="ri-amt">7ml</span></div><div class="recipe-ing-row"><span class="ri-name">앙고스투라 오렌지 비터</span><span class="ri-amt">1ml</span></div><div class="recipe-ing-row"><span class="ri-name">프레쉬 라임주스</span><span class="ri-amt">15ml</span></div><ol class="recipe-steps"><li>쉐이커에 모든 재료를 푸어, 제빙기 얼음 넣고 20회 원포인트 쉐이킹</li><li>더블스트레이너 사용하지 않고 글라스에 푸어</li></ol><div class="recipe-garnish">🌿 가니시: 소국</div></div>
       <div class="detail-footer">
         <button class="nav-btn" onclick="showCard(5)">← 이전</button>
         <button class="back-btn-bottom" onclick="showGrid()">목록으로</button>
@@ -2674,6 +2756,9 @@ html, body {
 <div class="quick-row"><div class="quick-label">가니쉬</div><div class="quick-value">회전 코스터 (말의 질주)</div></div>
 <div class="quick-row"><div class="quick-label">기법 ★</div><div class="quick-value">팻워시 — 참기름과 위스키 함께 얼린 후 기름기 제거, 향만 남김</div></div>
       </div>
+      <div class="section-divider"></div>
+      <div class="section-title">🍸 레시피 (제조용)</div>
+      <div class="recipe-box"><div class="recipe-meta">기법 <b>스터</b> · 얼음 <b>5*5 큐브</b> · 글라스 <b>트라이스 팔레트 글라스</b> · 총량 <b>60ml</b></div><div class="recipe-ing-row"><span class="ri-name">참기름 팻워시드 버번</span><span class="ri-amt">60ml</span></div><div class="recipe-ing-row"><span class="ri-name">작두콩 시럽</span><span class="ri-amt">10ml</span></div><ol class="recipe-steps"><li>5*5 큐브 보석모양으로 재단</li><li>글라스에 모든 재료 푸어, 바스푼으로 저어서 믹싱</li><li>5*5 큐브 넣고 스터 80회</li></ol><div class="recipe-garnish">🌿 가니시: 회전 코스터</div></div>
       <div class="detail-footer">
         <button class="nav-btn" onclick="showCard(6)">← 이전</button>
         <button class="back-btn-bottom" onclick="showGrid()">목록으로</button>
@@ -2724,6 +2809,9 @@ html, body {
 <div class="quick-row"><div class="quick-label">가니쉬</div><div class="quick-value">솜사탕, 민트, 자개 코스터</div></div>
 <div class="quick-row"><div class="quick-label">주의 ※</div><div class="quick-value">솜사탕은 손/젓가락으로 뜯어 드시고 술에 담그면 너무 달아짐</div></div>
       </div>
+      <div class="section-divider"></div>
+      <div class="section-title">🍸 레시피 (제조용)</div>
+      <div class="recipe-box"><div class="recipe-meta">기법 <b>보스턴 쉐이킹</b> · 얼음 <b>멀쩡한 제빙기 큐브 5ea</b> · 글라스 <b>스니프터 글라스</b> · 총량 <b>130ml</b></div><div class="recipe-ing-row"><span class="ri-name">바카디 카르타 블랑카</span><span class="ri-amt">45ml</span></div><div class="recipe-ing-row"><span class="ri-name">미도리</span><span class="ri-amt">15ml</span></div><div class="recipe-ing-row"><span class="ri-name">팁코 브로콜리주스</span><span class="ri-amt">60ml</span></div><div class="recipe-ing-row"><span class="ri-name">리치스 슈가 시럽</span><span class="ri-amt">10ml</span></div><div class="recipe-ing-row"><span class="ri-name">프레쉬 레몬 주스</span><span class="ri-amt">15ml</span></div><ol class="recipe-steps"><li>쉐이커에 모든 재료를 푸어, 제빙기 얼음넣고 25회 쉐이킹</li><li>더블 스트레이너 사용하지 않고 글라스에 푸어</li></ol><div class="recipe-garnish">🌿 가니시: 타임, 솜사탕, 스트로우, 자개 코스터</div><div class="recipe-variant"><div class="recipe-variant-title">🚫 버진 양 (무알코올)</div><div class="recipe-meta">기법 <b>보스턴 쉐이킹</b> · 얼음 <b>멀쩡한 제빙기 큐브 5ea</b> · 글라스 <b>스니프터 글라스</b> · 총량 <b>115ml</b></div><div class="recipe-ing-row"><span class="ri-name">팁코 브로콜리주스</span><span class="ri-amt">100ml</span></div><div class="recipe-ing-row"><span class="ri-name">오뚜기 메론 시럽</span><span class="ri-amt">15ml</span></div><div class="recipe-ing-row"><span class="ri-name">프레쉬 레몬주스</span><span class="ri-amt">15ml</span></div><ol class="recipe-steps"><li>쉐이커에 모든 재료를 푸어, 제빙기 얼음넣고 15회 쉐이킹</li><li>더블 스트레이너 사용하지 않고 글라스에 푸어</li></ol><div class="recipe-garnish">🌿 가니시: 타임, 솜사탕, 스트로우, 자개 코스터</div></div></div>
       <div class="detail-footer">
         <button class="nav-btn" onclick="showCard(7)">← 이전</button>
         <button class="back-btn-bottom" onclick="showGrid()">목록으로</button>
@@ -2774,6 +2862,9 @@ html, body {
 <div class="quick-row"><div class="quick-label">가니쉬</div><div class="quick-value">사과칩, 바나나 이파리, 시나몬 훈연</div></div>
 <div class="quick-row"><div class="quick-label">재치 포인트</div><div class="quick-value">동요 가사 그대로 매칭 (빨개→사과, 맛있으면→바나나)</div></div>
       </div>
+      <div class="section-divider"></div>
+      <div class="section-title">🍸 레시피 (제조용)</div>
+      <div class="recipe-box"><div class="recipe-meta">기법 <b>스터</b> · 얼음 <b>노아이스</b> · 글라스 <b>광주요 사과찬기</b> · 총량 <b>70ml</b></div><div class="recipe-ing-row"><span class="ri-name">문경바람 오크 40</span><span class="ri-amt">20ml</span></div><div class="recipe-ing-row"><span class="ri-name">디카이퍼 바나나</span><span class="ri-amt">15ml</span></div><div class="recipe-ing-row"><span class="ri-name">파이어 볼</span><span class="ri-amt">15ml</span></div><div class="recipe-ing-row"><span class="ri-name">오션스프레이 크랜베리주스</span><span class="ri-amt">15ml</span></div><div class="recipe-ing-row"><span class="ri-name">커클랜드 메이플 시럽</span><span class="ri-amt">5ml</span></div><div class="recipe-ing-row"><span class="ri-name">프레쉬 레몬주스</span><span class="ri-amt">10ml</span></div><ol class="recipe-steps"><li>믹싱글라스에 모든 재료를 푸어, 제빙기 얼음 5ea 넣고 스터 80회</li><li>더블 스트레이너 사용하지 않고 글라스에 푸어</li></ol><div class="recipe-garnish">🌿 가니시: 사과칩 사사노하 애플우드칩 훈연 (서브 직전에 할 것)</div></div>
       <div class="detail-footer">
         <button class="nav-btn" onclick="showCard(8)">← 이전</button>
         <button class="back-btn-bottom" onclick="showGrid()">목록으로</button>
@@ -2824,6 +2915,9 @@ html, body {
 <div class="quick-row"><div class="quick-label">가니쉬</div><div class="quick-value">머랭, 맨드라미 꽃잎</div></div>
 <div class="quick-row"><div class="quick-label">재치 포인트</div><div class="quick-value">머랭 = 계란 흰자 = 닭이 만든 휘핑 (닭만의 휘핑)</div></div>
       </div>
+      <div class="section-divider"></div>
+      <div class="section-title">🍸 레시피 (제조용)</div>
+      <div class="recipe-box"><div class="recipe-meta">기법 <b>드라이 쉐이킹 &amp; 쉐이킹</b> · 얼음 <b>노아이스</b> · 글라스 <b>쿠페글라스</b> · 총량 <b>65ml</b></div><div class="recipe-ing-row"><span class="ri-name">히비스커스 인퓨즈드 보드카</span><span class="ri-amt">40ml</span></div><div class="recipe-ing-row"><span class="ri-name">생제르망</span><span class="ri-amt">10ml</span></div><div class="recipe-ing-row"><span class="ri-name">피우리 맨드라미 시럽</span><span class="ri-amt">15ml</span></div><div class="recipe-ing-row"><span class="ri-name">프레쉬 레몬주스</span><span class="ri-amt">25ml</span></div><div class="recipe-ing-row"><span class="ri-name">에그 화이트</span><span class="ri-amt">30ml</span></div><ol class="recipe-steps"><li>쉐이커에 모든 재료를 푸어, 드라이 쉐이킹 강하게 50회</li><li>제빙기 얼음 넣고 쉐이킹 40회</li><li>더블스트레이너 사용하여 글라스에 푸어</li><li>레몬 제스트&amp;맨드라미 가니쉬</li></ol><div class="recipe-garnish">🌿 가니시: 맨드라미 꽃차</div></div>
       <div class="detail-footer">
         <button class="nav-btn" onclick="showCard(9)">← 이전</button>
         <button class="back-btn-bottom" onclick="showGrid()">목록으로</button>
@@ -2872,6 +2966,9 @@ html, body {
 <div class="quick-row"><div class="quick-label">가니쉬</div><div class="quick-value">말돈 소금 (잔 가장자리), 방울밴드 (개목걸이)</div></div>
 <div class="quick-row"><div class="quick-label">펀치라인 ★</div><div class="quick-value">개비름 + 불독 + 개목걸이 = '개개개' 라임</div></div>
       </div>
+      <div class="section-divider"></div>
+      <div class="section-title">🍸 레시피 (제조용)</div>
+      <div class="recipe-box"><div class="recipe-meta">기법 <b>빌드</b> · 얼음 <b>4*4*11 스틱</b> · 글라스 <b>토요사사키하이볼 글라스</b> · 총량 <b>115ml</b></div><div class="recipe-ing-row"><span class="ri-name">비름 인퓨즈드 스피릿</span><span class="ri-amt">10ml</span></div><div class="recipe-ing-row"><span class="ri-name">아페롤</span><span class="ri-amt">35ml</span></div><div class="recipe-ing-row"><span class="ri-name">과육제거 나탈리스 자몽주스</span><span class="ri-amt">60ml</span></div><div class="recipe-ing-row"><span class="ri-name">프레쉬 레몬주스</span><span class="ri-amt">10ml</span></div><div class="recipe-ing-row"><span class="ri-name">피버트리 토닉워터</span><span class="ri-amt">필업</span></div><ol class="recipe-steps"><li>4*4*11 스틱 준비(상온화과정)</li><li>글라스에 하프리밍, 방울밴드 장착</li><li>글라스에 모든 재료를 푸어, 스틱아이스 넣고 스터 14회</li><li>토닉워터를 9부까지 필업 후 얼음 리프팅 2회</li></ol><div class="recipe-garnish">🌿 가니시: 방울밴드, 말돈 솔트 하프리밍</div></div>
       <div class="detail-footer">
         <button class="nav-btn" onclick="showCard(10)">← 이전</button>
         <button class="back-btn-bottom" onclick="showGrid()">목록으로</button>
@@ -2922,6 +3019,9 @@ html, body {
 <div class="quick-row"><div class="quick-label">가니쉬</div><div class="quick-value">마쉬멜로우, 쿠키, 말린 막대 (돼지 꼬리)</div></div>
 <div class="quick-row"><div class="quick-label">펀치라인 ★</div><div class="quick-value">삼해소주 = 세 번의 돼지의 날(해일)에 빚은 술</div></div>
       </div>
+      <div class="section-divider"></div>
+      <div class="section-title">🍸 레시피 (제조용)</div>
+      <div class="recipe-box"><div class="recipe-meta">기법 <b>스터</b> · 얼음 <b>5*5 큐브</b> · 글라스 <b>리델 락글라스</b> · 총량 <b>50ml</b></div><div class="recipe-ing-row"><span class="ri-name">삼해소주</span><span class="ri-amt">10ml</span></div><div class="recipe-ing-row"><span class="ri-name">와일드터키 81 버번</span><span class="ri-amt">10ml</span></div><div class="recipe-ing-row"><span class="ri-name">디카이퍼 크렘 드 카카오 브라운</span><span class="ri-amt">20ml</span></div><div class="recipe-ing-row"><span class="ri-name">모닌 스트로베리 시럽</span><span class="ri-amt">10ml</span></div><div class="recipe-ing-row"><span class="ri-name">프레쉬 레몬주스</span><span class="ri-amt">10ml</span></div><div class="recipe-ing-row"><span class="ri-name">프레쉬 크림(서울우유)</span><span class="ri-amt">45ml</span></div><ol class="recipe-steps"><li>믹싱글라스에 프렙, 레몬까지 푸어</li><li>멀쩡한 제빙기 큐브 5개 넣고 스터 80회</li><li>글라스에 칵테일 푸어</li><li>사용했던 믹싱글라스 내용물 전부 비운 다음 크림 푸어</li><li>에그포머로 크림 3초간 휘핑(너무 길어지면 안됨)</li><li>더블 스트레이너 사용해서 글라스에 플롯</li></ol><div class="recipe-garnish">🌿 가니시: 초코크런치, 돼지바 픽, 레몬 트위스트</div></div>
       <div class="detail-footer">
         <button class="nav-btn" onclick="showCard(11)">← 이전</button>
         <button class="back-btn-bottom" onclick="showGrid()">목록으로</button>
@@ -2956,6 +3056,9 @@ html, body {
 <p class="ment-line">약으로 마시던 게 너무 맛있어서 결국 칵테일로 자리잡았어요. 토닉워터 특유의 쌉싸름함이 바로 그 퀴닌에서 온 맛이에요.</p>
 <p class="ment-line">진의 허브 향과 토닉의 쌉쌀함이 깔끔하게 맞아떨어지는, 가장 클래식한 하이볼이에요.</p>
       </div>
+      <div class="section-divider"></div>
+      <div class="section-title">🍸 레시피 (제조용)</div>
+      <div class="recipe-box"><div class="recipe-ing-row"><span class="ri-name">고든스 진</span><span class="ri-amt unknown">용량 확인 필요</span></div><div class="recipe-ing-row"><span class="ri-name">라임 웨지</span><span class="ri-amt">1/6 ea</span></div><div class="recipe-ing-row"><span class="ri-name">토닉 워터</span><span class="ri-amt">필업</span></div><ol class="recipe-steps"><li>라임 웨지를 썰어 놓는다(중앙 심지 제거할 것).</li><li>칠링 된 글라스에 얼음을 채우고 진을 넣는다.</li><li>글라스에 라임 웨지를 짜주고 짠 라임 웨지로 리밍해준다(웨지 중앙에 칼집을 내면 짜기 편하다).</li><li>스터한다.</li><li>토닉 워터를 잔의 벽면을 타고 8부까지 채워준다.</li><li>바 스푼으로 얼음을 위 아래로 리프팅 해주며 음료를 섞어준다(탄산이 들어갔으니 약하게).</li><li>아까 짰던 라임 웨지로 장식해준다(라임 껍질부분이 잔의 바깥쪽으로 향하도록).</li></ol><div class="recipe-note">※ 베이스 용량은 원본 레시피 시트에 비어 있음 — 확인되는 대로 기입 예정</div></div>
       <div class="detail-footer">
         <button class="nav-btn" onclick="showClassic(11)">← 이전</button>
         <button class="back-btn-bottom" onclick="showClassicGrid()">목록으로</button>
@@ -2989,6 +3092,9 @@ html, body {
 <p class="ment-line">구리잔에 담는 게 시그니처인데, 구리가 차가움을 오래 유지해줘서 끝까지 시원하게 즐길 수 있어요. 진저비어의 알싸함이 매력이에요.</p>
 <p class="ment-line">논알콜로도 주문 가능합니다.</p>
       </div>
+      <div class="section-divider"></div>
+      <div class="section-title">🍸 레시피 (제조용)</div>
+      <div class="recipe-box"><div class="recipe-ing-row"><span class="ri-name">스톨리치나야 보드카</span><span class="ri-amt unknown">용량 확인 필요</span></div><div class="recipe-ing-row"><span class="ri-name">프레쉬 라임주스</span><span class="ri-amt">15ml</span></div><div class="recipe-ing-row"><span class="ri-name">앙고스투라 아로마틱 비터</span><span class="ri-amt">6ml</span></div><div class="recipe-ing-row"><span class="ri-name">피버트리 진저비어</span><span class="ri-amt">필업</span></div><ol class="recipe-steps"><li>진저비어를 제외한 모든 재료를 글라스에 넣고 크러쉬드 아이스를 글라스의 5부만큼 채워준다.</li><li>바 스푼으로 음료를 위 아래로 섞어준다.</li><li>크러쉬드 아이스를 잔의 9부까지 채워준다.</li><li>진저비어를 잔의 8부만큼 채워주고 바 스푼으로 음료를 위 아래로 섞어준다(탄산이 들어갔으니 약하게).</li><li>빨대를 두개 꽂아준다(크러쉬드 아이스를 쓰기 때문에 빨대가 얼음에 막힐 수 있다).</li><li>빨대의 반대편에 그을린 시나몬스틱을 꽂아준다.</li><li>크러쉬드 아이스를 소복하게 쌓아준다.</li><li>글라스의 중앙에 라임 웨지를 올려 장식해준다.</li></ol><div class="recipe-note">※ 베이스 용량은 원본 레시피 시트에 비어 있음 — 확인되는 대로 기입 예정</div></div>
       <div class="detail-footer">
         <button class="nav-btn" onclick="showClassic(1)">← 이전</button>
         <button class="back-btn-bottom" onclick="showClassicGrid()">목록으로</button>
@@ -3022,6 +3128,9 @@ html, body {
 <p class="ment-line">민트를 으깨서 향을 끌어내는 게 핵심이에요. 라임의 상큼함, 민트의 청량함이 더운 날 갈증을 시원하게 풀어줘요.</p>
 <p class="ment-line">논알콜로도 주문 가능합니다.</p>
       </div>
+      <div class="section-divider"></div>
+      <div class="section-title">🍸 레시피 (제조용)</div>
+      <div class="recipe-box"><div class="recipe-ing-row"><span class="ri-name">럼 (베이스)</span><span class="ri-amt unknown">용량 확인 필요</span></div><div class="recipe-ing-row"><span class="ri-name">프레쉬 라임주스</span><span class="ri-amt">25ml</span></div><div class="recipe-ing-row"><span class="ri-name">모닌 오르잣 시럽</span><span class="ri-amt">15ml</span></div><div class="recipe-ing-row"><span class="ri-name">민트</span><span class="ri-amt">8ml</span></div><div class="recipe-ing-row"><span class="ri-name">소다</span><span class="ri-amt">필업</span></div><ol class="recipe-steps"><li>칠링 된 글라스에 민트, 시럽, 라임 주스를 넣고 민트가 상하지 않게 머들링 해준다.</li><li>라이트 럼을 넣고 크러쉬드 아이스를 글라스의 5부만큼 채워준다.</li><li>바 스푼으로 음료를 위 아래로 섞어준다.</li><li>크러쉬드 아이스를 잔의 8부까지 채워준다.</li><li>소다를 잔의 8부만큼 채워주고 바 스푼으로 음료를 위 아래로 섞어준다(탄산이 들어갔으니 약하게).</li><li>빨대를 두개 꽂아준다(크러쉬드 아이스를 쓰기 때문에 빨대가 얼음에 막힐 수 있다).</li><li>크러쉬드 아이스를 소복하게 쌓아준다.</li><li>빨대 주변에 민트 2~3sprig을 스냅쳐서 풍성해 보이도록 꽂아준다.</li></ol><div class="recipe-note">※ 베이스 용량은 원본 레시피 시트에 비어 있음 — 확인되는 대로 기입 예정</div></div>
       <div class="detail-footer">
         <button class="nav-btn" onclick="showClassic(2)">← 이전</button>
         <button class="back-btn-bottom" onclick="showClassicGrid()">목록으로</button>
@@ -3055,6 +3164,9 @@ html, body {
 <p class="ment-line">초콜릿의 달콤함과 레몬의 상큼함, 톡 쏘는 탄산이 어우러져서 디저트 같은 느낌이에요. 단 거 좋아하시는 분께 추천해요.</p>
 <p class="ment-line">★ 주신당 추천 메뉴예요.</p>
       </div>
+      <div class="section-divider"></div>
+      <div class="section-title">🍸 레시피 (제조용)</div>
+      <div class="recipe-box"><div class="recipe-ing-row"><span class="ri-name">디카이퍼 크렘 드 카카오 화이트</span><span class="ri-amt unknown">용량 확인 필요</span></div><div class="recipe-ing-row"><span class="ri-name">프레쉬 레몬 주스</span><span class="ri-amt">22.5ml</span></div><div class="recipe-ing-row"><span class="ri-name">1:1 심플 시럽</span><span class="ri-amt">5ml</span></div><div class="recipe-ing-row"><span class="ri-name">비터트루스 초콜릿 비터</span><span class="ri-amt">3ml</span></div><div class="recipe-ing-row"><span class="ri-name">소다</span><span class="ri-amt">필업</span></div><ol class="recipe-steps"><li>모든 재료를 쉐이커에 넣고 칠링 된 글라스에 얼음을 채워준다.</li><li>쉐이커에 얼음을 채워 쉐이킹한다(호시자키 제빙기 기준 6큐브).</li><li>더블 스트레이너를 사용하여 글라스에 부어준다.</li><li>소다를 글라스의 8부까지 채워준다.</li><li>바 스푼으로 음료를 위 아래로 리프팅해주며 음료를 섞어준다(탄산이 들어갔으니 약하게).</li><li>레몬 제스트로 향을 입혀주고 레몬필을 꼬아서 잔에 걸치고 린트 초콜릿을 얼음 위에 올려준다.</li></ol><div class="recipe-note">※ 베이스 용량은 원본 레시피 시트에 비어 있음 — 확인되는 대로 기입 예정</div></div>
       <div class="detail-footer">
         <button class="nav-btn" onclick="showClassic(3)">← 이전</button>
         <button class="back-btn-bottom" onclick="showClassicGrid()">목록으로</button>
@@ -3088,6 +3200,9 @@ html, body {
 <p class="ment-line">콜드브루의 진한 커피 향과 오렌지의 산뜻함이 어우러져요. 카페인이 들어가서 '취하지만 졸리지 않은' 칵테일이에요. 식후에 특히 잘 어울려요.</p>
 <p class="ment-line">★ 주신당 추천 메뉴예요.</p>
       </div>
+      <div class="section-divider"></div>
+      <div class="section-title">🍸 레시피 (제조용)</div>
+      <div class="recipe-box"><div class="recipe-ing-row"><span class="ri-name">세로 데 오로 데킬라</span><span class="ri-amt unknown">용량 확인 필요</span></div><div class="recipe-ing-row"><span class="ri-name">코인트루</span><span class="ri-amt">10ml</span></div><div class="recipe-ing-row"><span class="ri-name">깔루아</span><span class="ri-amt">10ml</span></div><div class="recipe-ing-row"><span class="ri-name">모닌 바닐라 시럽</span><span class="ri-amt">10ml</span></div><div class="recipe-ing-row"><span class="ri-name">콜드브루(에티오피아 예가체프)</span><span class="ri-amt">30ml</span></div><ol class="recipe-steps"><li>모든 재료를 쉐이커에 넣고 쉐이커에 얼음을 채워 쉐이킹한다.</li><li>더블 스트레이너를 사용하지 않고 글라스에 부어준다.</li><li>오렌지 제스트로 향을 입혀주고 크래커를 잔에 걸치고 그 위에 파마산 치즈 그라인드를 한꼬집 뿌려주고 토칭해준다.</li><li>*주황색 셀까지 프렙</li></ol><div class="recipe-note">※ 베이스 용량은 원본 레시피 시트에 비어 있음 — 확인되는 대로 기입 예정</div></div>
       <div class="detail-footer">
         <button class="nav-btn" onclick="showClassic(4)">← 이전</button>
         <button class="back-btn-bottom" onclick="showClassicGrid()">목록으로</button>
@@ -3120,6 +3235,9 @@ html, body {
 <p class="ment-line">그 깔루아에 우유를 섞은 게 깔루아 밀크예요. 칵테일 입문자도 부담 없이 마실 수 있는 가장 순하고 달콤한 칵테일 중 하나예요.</p>
 <p class="ment-line">달콤한 커피우유 같은 맛이라 술이 약하거나, 디저트처럼 마시고 싶은 분께 잘 맞아요. 커피웨이퍼를 곁들여 더 디저트 같은 느낌을 살렸어요.</p>
       </div>
+      <div class="section-divider"></div>
+      <div class="section-title">🍸 레시피 (제조용)</div>
+      <div class="recipe-box"><div class="recipe-ing-row"><span class="ri-name">깔루아</span><span class="ri-amt unknown">용량 확인 필요</span></div><div class="recipe-ing-row"><span class="ri-name">우유</span><span class="ri-amt">30ml</span></div><div class="recipe-ing-row"><span class="ri-name">휘핑크림</span><span class="ri-amt">30ml</span></div><ol class="recipe-steps"><li>칠링 된 글라스에 모든 재료를 넣어준다.</li><li>얼음을 글라스에 넣고 스터한다.</li><li>커피 웨이퍼를 얼음 위에 올려준다.</li></ol><div class="recipe-note">※ 베이스 용량은 원본 레시피 시트에 비어 있음 — 확인되는 대로 기입 예정</div></div>
       <div class="detail-footer">
         <button class="nav-btn" onclick="showClassic(5)">← 이전</button>
         <button class="back-btn-bottom" onclick="showClassicGrid()">목록으로</button>
@@ -3152,6 +3270,9 @@ html, body {
 <p class="ment-line">위스키에 '아마레토'라는 살구씨 리큐르를 섞는 게 클래식 공식이에요. 아마레토가 이탈리아 술이라서 '대부'와 연결돼요.</p>
 <p class="ment-line">위스키의 묵직함에 아마레토의 아몬드 같은 단 향이 더해져서, 강하지만 부드럽게 넘어가요. 위스키 좋아하시는 분께 추천해요.</p>
       </div>
+      <div class="section-divider"></div>
+      <div class="section-title">🍸 레시피 (제조용)</div>
+      <div class="recipe-box"><div class="recipe-ing-row"><span class="ri-name">놉크릭 버번</span><span class="ri-amt unknown">용량 확인 필요</span></div><div class="recipe-ing-row"><span class="ri-name">디사론노</span><span class="ri-amt">15ml</span></div><div class="recipe-ing-row"><span class="ri-name">비터트루스 초콜릿 비터</span><span class="ri-amt">3ml</span></div><ol class="recipe-steps"><li>칠링 된 글라스에 모든 재료를 넣어준다.</li><li>얼음을 글라스에 넣고 스터한다.</li><li>얼음과 잔 벽 사이에 시나몬 스틱을 꽂아 장식해준다.</li></ol><div class="recipe-note">※ 베이스 용량은 원본 레시피 시트에 비어 있음 — 확인되는 대로 기입 예정</div></div>
       <div class="detail-footer">
         <button class="nav-btn" onclick="showClassic(6)">← 이전</button>
         <button class="back-btn-bottom" onclick="showClassicGrid()">목록으로</button>
@@ -3185,6 +3306,9 @@ html, body {
 <p class="ment-line">달콤하면서도 자몽 덕에 끝맛이 깔끔해요. 비주얼도 예뻐서 사진 찍기 좋은 칵테일이에요.</p>
 <p class="ment-line">★ 주신당 추천 메뉴예요.</p>
       </div>
+      <div class="section-divider"></div>
+      <div class="section-title">🍸 레시피 (제조용)</div>
+      <div class="recipe-box"><div class="recipe-ing-row"><span class="ri-name">콰이페</span><span class="ri-amt unknown">용량 확인 필요</span></div><div class="recipe-ing-row"><span class="ri-name">나탈리스 자몽주스</span><span class="ri-amt">40ml</span></div><div class="recipe-ing-row"><span class="ri-name">프레쉬 레몬 주스</span><span class="ri-amt">10ml</span></div><div class="recipe-ing-row"><span class="ri-name">디카이퍼 블루 큐라소</span><span class="ri-amt">5ml</span></div><div class="recipe-ing-row"><span class="ri-name">토닉 워터</span><span class="ri-amt">필업</span></div><ol class="recipe-steps"><li>토닉워터, 블루 큐라소를 제외한 모든 재료를 쉐이커에 넣고 칠링 된 글라스에 얼음을 채워준다.</li><li>쉐이커에 얼음을 채워 쉐이킹한다(호시자키 제빙기 기준 6큐브).</li><li>더블 스트레이너를 사용하지 않고 글라스에 부어준다.</li><li>토닉 워터를 글라스의 9부까지 채워준다.</li><li>바 스푼으로 얼음을 위 아래로 리프팅해주며 음료를 섞어준다(탄산이 들어갔으니 약하게).</li><li>리치 젤리 2개를 가니쉬 픽의 중앙에 꽂고 잔에 걸친다.</li><li>블루 큐라소를 부어준다.</li></ol><div class="recipe-note">※ 베이스 용량은 원본 레시피 시트에 비어 있음 — 확인되는 대로 기입 예정</div></div>
       <div class="detail-footer">
         <button class="nav-btn" onclick="showClassic(7)">← 이전</button>
         <button class="back-btn-bottom" onclick="showClassicGrid()">목록으로</button>
@@ -3217,6 +3341,9 @@ html, body {
 <p class="ment-line">이름에 '아이스티'가 들어가지만 차(tea)는 한 방울도 안 들어가요. 여러 술을 섞었을 때 색깔이 홍차처럼 보여서 붙은 이름이에요.</p>
 <p class="ment-line">럼·진·보드카·데킬라 — 무려 4가지 베이스 술이 들어가서 도수가 꽤 높아요. 그런데 콜라와 레몬 덕에 의외로 부드럽게 넘어가요. 강한 술을 찾으시는 분께 추천해요.</p>
       </div>
+      <div class="section-divider"></div>
+      <div class="section-title">🍸 레시피 (제조용)</div>
+      <div class="recipe-box"><div class="recipe-ing-row"><span class="ri-name">콤보 라이트 럼</span><span class="ri-amt unknown">용량 확인 필요</span></div><div class="recipe-ing-row"><span class="ri-name">콤보 런던 드라이 진</span><span class="ri-amt">15ml</span></div><div class="recipe-ing-row"><span class="ri-name">콤보 보드카</span><span class="ri-amt">15ml</span></div><div class="recipe-ing-row"><span class="ri-name">세로 데 오로 데킬라</span><span class="ri-amt">15ml</span></div><div class="recipe-ing-row"><span class="ri-name">코인트루</span><span class="ri-amt">15ml</span></div><div class="recipe-ing-row"><span class="ri-name">프레쉬 레몬 주스</span><span class="ri-amt">20ml</span></div><div class="recipe-ing-row"><span class="ri-name">1:1 심플 시럽</span><span class="ri-amt">15ml</span></div><div class="recipe-ing-row"><span class="ri-name">콜라</span><span class="ri-amt">필업</span></div><ol class="recipe-steps"><li>모든 재료를 쉐이커에 넣고 칠링 된 글라스에 얼음을 채워준다.</li><li>쉐이커에 얼음을 채워 쉐이킹한다.</li><li>더블 스트레이너를 사용하지 않고 글라스에 부어준다.</li><li>콜라를 글라스의 8부까지 채워준다.</li><li>바 스푼으로 음료를 위 아래로 리프팅해주며 음료를 섞어준다(탄산이 들어갔으니 약하게).</li><li>레몬 제스트로 향을 입혀주고 로즈마리를 잔에 넣는다.</li><li>*주황색 셀까지 프렙</li></ol><div class="recipe-note">※ 베이스 용량은 원본 레시피 시트에 비어 있음 — 확인되는 대로 기입 예정</div></div>
       <div class="detail-footer">
         <button class="nav-btn" onclick="showClassic(8)">← 이전</button>
         <button class="back-btn-bottom" onclick="showClassicGrid()">목록으로</button>
