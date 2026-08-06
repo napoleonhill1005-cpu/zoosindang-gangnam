@@ -4071,6 +4071,13 @@ function openFoodCategory(cat) {
   window.scrollTo(0, 0);
 }
 
+// === 오프라인 지원 (service worker 등록) ===
+if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(err => console.log('SW 등록 실패:', err));
+  });
+}
+
 // === 메뉴 검색 (초성 지원) ===
 const CHOSEONG = ["ㄱ","ㄲ","ㄴ","ㄷ","ㄸ","ㄹ","ㅁ","ㅂ","ㅃ","ㅅ","ㅆ","ㅇ","ㅈ","ㅉ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"];
 function toChoseong(str) {
