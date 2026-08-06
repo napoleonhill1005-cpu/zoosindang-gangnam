@@ -507,6 +507,51 @@ html, body {
   color: var(--dark-red);
   margin-bottom: 14px;
 }
+/* 메뉴 검색 */
+.search-wrap {
+  position: relative;
+  margin: 0 20px 18px;
+}
+.search-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 16px;
+  font-size: 16px;
+  font-family: inherit;
+  color: var(--ink);
+  background: var(--card-bg);
+  border: 1.5px solid var(--divider);
+  border-radius: 12px;
+  outline: none;
+}
+.search-input:focus { border-color: var(--gold); }
+.search-input::placeholder { color: var(--gray); opacity: 0.7; }
+.search-results {
+  position: absolute;
+  left: 0; right: 0; top: calc(100% + 6px);
+  z-index: 30;
+  background: var(--card-bg);
+  border: 1.5px solid var(--divider);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(35,28,20,0.18);
+}
+.search-result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--soft-bg);
+  cursor: pointer;
+}
+.search-result-row:last-child { border-bottom: none; }
+.search-result-row:active { background: var(--soft-bg); }
+.sr-name { font-size: 14px; font-weight: 600; color: var(--ink); word-break: keep-all; }
+.sr-cat { flex-shrink: 0; font-size: 12px; color: var(--gold); font-weight: 700; }
+.search-empty { padding: 14px 16px; font-size: 13px; color: var(--gray); text-align: center; }
+.list-item.search-hit { border-color: var(--gold); box-shadow: 0 0 0 2px var(--gold); transition: box-shadow 0.3s; }
+
 .ment-box {
   background: var(--card-bg);
   border: 1.5px solid var(--divider);
@@ -685,6 +730,10 @@ html, body {
       <h1>주신당 강남점</h1>
       <div class="sub">칵테일 · 주류 매뉴얼</div>
       <div class="deco">정성 · 신기함 · 재미</div>
+    </div>
+    <div class="search-wrap">
+      <input id="search-input" class="search-input" type="search" placeholder="메뉴 검색 · 초성 가능 (예: ㅇㅅㅋ)" autocomplete="off" oninput="runSearch()">
+      <div id="search-results" class="search-results" style="display:none;"></div>
     </div>
     <div class="category-list">
       <div class="category-btn cat-main cat-menu-main" onclick="openMainCategory('menu')">
@@ -4022,6 +4071,90 @@ function openFoodCategory(cat) {
   window.scrollTo(0, 0);
 }
 
+// === 메뉴 검색 (초성 지원) ===
+const CHOSEONG = ["ㄱ","ㄲ","ㄴ","ㄷ","ㄸ","ㄹ","ㅁ","ㅂ","ㅃ","ㅅ","ㅆ","ㅇ","ㅈ","ㅉ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"];
+function toChoseong(str) {
+  let out = '';
+  for (const ch of str) {
+    const code = ch.codePointAt(0);
+    if (code >= 0xAC00 && code <= 0xD7A3) out += CHOSEONG[Math.floor((code - 0xAC00) / 588)];
+    else out += ch;
+  }
+  return out;
+}
+
+let searchIndex = null;
+function buildSearchIndex() {
+  searchIndex = [];
+  // 카드형: 12지신 / 클래식 / 생맥주
+  document.querySelectorAll('.detail-card').forEach(card => {
+    let m, open = null, cat = '';
+    if ((m = card.id.match(/^detail-(\d+)$/))) { const i = +m[1]; open = () => showCard(i); cat = '12지신'; }
+    else if ((m = card.id.match(/^classic-detail-(\d+)$/))) { const i = +m[1]; open = () => showClassic(i); cat = '클래식'; }
+    else if ((m = card.id.match(/^beer-detail-(\d+)$/))) { const i = +m[1]; open = () => showBeer(i); cat = '생맥주'; }
+    if (!open) return;
+    const kr = card.querySelector('.card-kr'), en = card.querySelector('.card-en');
+    searchIndex.push({ name: kr ? kr.textContent.trim() : '', en: en ? en.textContent.trim() : '', cat, open });
+  });
+  // 리스트형: 위스키 / 전통주 / 스페셜 / 음식
+  const screens = {
+    'whisky-screen': '위스키', 'traditional-screen': '전통주', 'special-screen': '스페셜',
+    'food-lunch-screen': '런치', 'food-omakase-screen': '오마카세', 'food-main-screen': '메인 요리',
+    'food-meal-screen': '식사', 'food-snack-screen': '스낵', 'food-dessert-screen': '디저트'
+  };
+  Object.keys(screens).forEach(sid => {
+    const scr = document.getElementById(sid);
+    if (!scr) return;
+    scr.querySelectorAll('.list-item').forEach(item => {
+      const kr = item.querySelector('.list-name'), en = item.querySelector('.list-en');
+      searchIndex.push({
+        name: kr ? kr.textContent.trim() : '', en: en ? en.textContent.trim() : '', cat: screens[sid],
+        open: () => {
+          hideAll();
+          scr.style.display = 'block';
+          item.classList.add('open', 'search-hit');
+          item.scrollIntoView({ block: 'center' });
+          setTimeout(() => item.classList.remove('search-hit'), 1600);
+        }
+      });
+    });
+  });
+  searchIndex.forEach(e => {
+    e.lname = e.name.toLowerCase();
+    e.len = e.en.toLowerCase();
+    e.cho = toChoseong(e.name);
+  });
+}
+
+function runSearch() {
+  const input = document.getElementById('search-input');
+  const box = document.getElementById('search-results');
+  const q = input.value.trim();
+  if (!searchIndex) buildSearchIndex();
+  box.innerHTML = '';
+  if (!q) { box.style.display = 'none'; return; }
+  const lq = q.toLowerCase();
+  const isCho = /^[ㄱ-ㅎ]+$/.test(q);
+  const hits = searchIndex.filter(e => isCho ? e.cho.includes(q) : (e.lname.includes(lq) || e.len.includes(lq))).slice(0, 12);
+  if (!hits.length) {
+    box.innerHTML = '<div class="search-empty">검색 결과가 없습니다</div>';
+  } else {
+    hits.forEach(h => {
+      const row = document.createElement('div');
+      row.className = 'search-result-row';
+      const name = document.createElement('span');
+      name.className = 'sr-name';
+      name.textContent = h.name + (h.en ? ' · ' + h.en : '');
+      const cat = document.createElement('span');
+      cat.className = 'sr-cat';
+      cat.textContent = h.cat;
+      row.appendChild(name); row.appendChild(cat);
+      row.onclick = () => { input.value = ''; box.style.display = 'none'; box.innerHTML = ''; h.open(); };
+      box.appendChild(row);
+    });
+  }
+  box.style.display = 'block';
+}
 </script>
 </body>
 </html>
