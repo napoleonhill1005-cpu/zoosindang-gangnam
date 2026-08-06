@@ -22,8 +22,8 @@
 - 화면 전환은 hideAll() + 개별 show 함수로 처리
 
 ## 외부 연동
-- 바텐더 코멘트는 Google Sheets에서 CSV로 실시간 로딩(loadBartenderComments())
-- gviz 방식 1차 시도 → 실패 시 게시 CSV 방식 2차 시도
+- 없음. 바텐더 코멘트(Google Sheets 연동)는 미사용으로 제거됨 (2026-08)
+- 레시피 등 모든 콘텐츠는 index.html에 정적으로 내장
 
 ## 작업 규칙
 - 색상은 :root의 CSS 변수 사용(--bg, --gold, --red 등). 하드코딩 금지
