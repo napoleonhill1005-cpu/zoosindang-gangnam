@@ -751,41 +751,9 @@ html, body {
   }
 }
 
-/* ===== Splash Screen ===== */
-#splash-screen {
-  position: fixed;
-  inset: 0;
-  background: #0a0a0a;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.8s ease;
-}
-.splash-wrap {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-}
-.sp-hanja {
-  font-size: 76px;
-  font-weight: 700;
-  color: #8c1e19;
-  letter-spacing: 0.12em;
-  line-height: 1;
-}
-.sp-sub {
-  font-size: 11px;
-  color: #4a3a38;
-  letter-spacing: 0.35em;
-}
 </style>
 </head>
 <body>
-<div id="splash-screen"></div>
 <div class="app">
 
   <!-- ===== 홈 화면 (카테고리 선택) ===== -->
@@ -4056,20 +4024,6 @@ html, body {
 </div>
 
 <script>
-(function() {
-  var splash = document.getElementById('splash-screen');
-  splash.innerHTML = '<div class="splash-wrap"><div class="sp-hanja">酒神堂</div><div class="sp-sub">강남점 매뉴얼</div></div>';
-  requestAnimationFrame(function() {
-    requestAnimationFrame(function() {
-      splash.style.opacity = '1';
-    });
-  });
-  setTimeout(function() {
-    splash.style.opacity = '0';
-    setTimeout(function() { splash.style.display = 'none'; }, 800);
-  }, 2200);
-})();
-
 // ===== 화면 전환 =====
 function hideAll() {
   document.getElementById('home-screen').style.display = 'none';
