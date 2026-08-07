@@ -616,6 +616,44 @@ html, body {
   margin-bottom: 8px;
 }
 
+/* 기법 용어 설명 */
+.glossary-toggle {
+  margin-top: 10px;
+  border-top: 1px solid var(--soft-bg);
+  padding-top: 10px;
+}
+.glossary-toggle summary {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--note);
+  cursor: pointer;
+  list-style: none;
+}
+.glossary-toggle summary::-webkit-details-marker { display: none; }
+.glossary-toggle summary::before { content: "▸ "; }
+.glossary-toggle[open] summary::before { content: "▾ "; }
+.glossary-list { margin-top: 8px; }
+.glossary-item {
+  padding: 7px 0;
+  border-bottom: 1px dashed var(--soft-bg);
+  font-size: 13px;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+.glossary-item:last-child { border-bottom: none; }
+.glossary-term { font-weight: 800; color: var(--dark-red); margin-right: 6px; }
+.glossary-desc { color: var(--ink); }
+.glossary-wrap { padding: 0 20px 30px; }
+.glossary-wrap .glossary-item {
+  background: var(--card-bg);
+  border: 1.5px solid var(--divider);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.cat-technique { border-left: 5px solid var(--note); }
+
 .ment-box {
   background: var(--card-bg);
   border: 1.5px solid var(--divider);
@@ -857,7 +895,23 @@ html, body {
         <div class="cat-name">스페셜 추천 주류</div>
         <div class="cat-desc">4종 · 매장 특별 추천</div>
       </div>
+      <div class="category-btn cat-technique" onclick="showTechniqueScreen()">
+        <div class="cat-name">기법 용어 사전</div>
+        <div class="cat-desc">쉐이킹 · 스터 · 필업 등 레시피 용어 풀이</div>
+      </div>
     </div>
+  </div>
+
+  <!-- ===== 기법 용어 사전 화면 ===== -->
+  <div class="grid-screen" id="technique-screen" style="display:none;">
+    <div class="detail-header">
+      <button class="back-btn" onclick="showLiquorScreen()">← 주류 카테고리로</button>
+    </div>
+    <div class="app-title" style="padding-top:8px;">
+      <h1>기법 용어 사전</h1>
+      <div class="sub">레시피에 나오는 바텐딩 용어 풀이</div>
+    </div>
+    <div class="glossary-wrap" id="glossary-full"></div>
   </div>
 
   <!-- ===== 매장 관리 매뉴얼 화면 ===== -->
@@ -4036,6 +4090,7 @@ function hideAll() {
   document.getElementById('traditional-screen').style.display = 'none';
   document.getElementById('whisky-screen').style.display = 'none';
   document.getElementById('special-screen').style.display = 'none';
+  document.getElementById('technique-screen').style.display = 'none';
   document.getElementById('food-lunch-screen').style.display = 'none';
   document.getElementById('food-omakase-screen').style.display = 'none';
   document.getElementById('food-main-screen').style.display = 'none';
@@ -4149,6 +4204,60 @@ function showMenuScreen() {
 function openFoodCategory(cat) {
   hideAll();
   document.getElementById('food-' + cat + '-screen').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+// === 기법 용어 사전 ===
+// aliases: 레시피 본문에 실제로 등장하는 표기들. 하나라도 카드 텍스트에 있으면 해당 카드에 설명 표시.
+const TECHNIQUES = [
+  { term: "빌드", aliases: ["빌드"], desc: "셰이커 없이 서빙할 글라스에 재료를 직접 부어 만드는 방식." },
+  { term: "스터", aliases: ["스터"], desc: "바스푼으로 저어 섞기. '스터 40회'는 40번 젓는다는 뜻. 흔들지 않고 저어서 맑고 부드럽게 섞는 기법." },
+  { term: "쉐이킹 (코블러)", aliases: ["코블러"], desc: "뚜껑·거름망이 달린 3단 셰이커에 재료와 얼음을 넣고 흔드는 기본 셰이킹." },
+  { term: "보스턴 쉐이킹", aliases: ["보스턴"], desc: "큰 틴 2개를 맞물려 흔드는 방식. 코블러보다 공간이 커서 더 강하게 섞이고 거품이 잘 남." },
+  { term: "드라이 쉐이킹", aliases: ["드라이 쉐이킹"], desc: "얼음 없이 먼저 흔드는 것. 달걀흰자·크림의 거품을 풍성하게 낼 때 사용." },
+  { term: "원포인트 쉐이킹", aliases: ["원포인트"], desc: "짧고 강하게 끊어 치는 셰이킹. 섬세한 재료가 너무 묽어지지 않게 할 때 사용." },
+  { term: "쓰로잉", aliases: ["쓰로잉"], desc: "틴에서 틴으로 높은 곳에서 길게 부어 옮기며 공기를 섞는 기법. 향이 열리고 목넘김이 부드러워짐." },
+  { term: "푸어", aliases: ["푸어"], desc: "붓는다는 뜻. '재료를 푸어' = 재료를 부어 넣기." },
+  { term: "필업", aliases: ["필업", "Fill"], desc: "잔 끝(또는 지정한 높이)까지 채우기. '9부까지 필업' = 잔의 90%까지 채우기." },
+  { term: "더블 스트레인", aliases: ["더블 스트레인", "더블스트레인", "더블 스트레이너", "더블스트레이너"], desc: "셰이커 거름망에 고운 체를 한 번 더 대고 걸러, 얼음 조각과 과육 없이 맑게 따르는 것." },
+  { term: "리프팅", aliases: ["리프팅"], desc: "바스푼으로 얼음을 살짝 들었다 놓기. 탄산을 죽이지 않으면서 음료를 섞는 방법." },
+  { term: "플롯", aliases: ["플롯"], desc: "섞지 않고 위에 살짝 띄우듯 얹어 층을 만드는 것. (예: 치즈 폼, 크림)" },
+  { term: "아토마이징", aliases: ["아토마이징"], desc: "분무기(아토마이저)로 향 에센스를 안개처럼 뿌리는 것. '2회 아토마이징' = 두 번 분사." },
+  { term: "리밍 / 하프리밍", aliases: ["리밍"], desc: "잔 테두리에 소금·설탕 등을 묻히는 것. 하프리밍은 테두리의 반만 묻혀 손님이 선택해 마실 수 있게 함." },
+  { term: "머들링", aliases: ["머들링"], desc: "머들러(절굿공이)로 민트·과일을 가볍게 눌러 으깨 향을 내는 것. 너무 세게 으깨면 쓴맛이 남." },
+  { term: "칠링", aliases: ["칠링"], desc: "잔을 얼음물이나 냉동고로 미리 차갑게 해두는 것." },
+  { term: "인퓨즈드 / 인퓨전", aliases: ["인퓨즈드", "인퓨전"], desc: "술이나 차에 재료(허브·과일·향신료)를 담가 향을 우려낸 것. 미리 만들어 둔 프렙 재료." },
+  { term: "팻워시드", aliases: ["팻워시드"], desc: "술에 기름(참기름 등)을 섞어 향을 입힌 뒤 굳혀 걸러내, 고소한 풍미만 남긴 술." },
+  { term: "클레리파이드", aliases: ["클레리파이드"], desc: "우유 등으로 탁한 성분을 응고시켜 걸러내 맑게 정제한 것. 맛은 부드럽고 색은 투명해짐." },
+  { term: "스탬핑", aliases: ["스탬핑"], desc: "얼음 표면에 도장으로 문양(주신당 한자 등)을 찍는 장식 기법." },
+  { term: "에그포머", aliases: ["에그포머"], desc: "크림이나 거품을 빠르게 내는 소형 전동 거품기." },
+  { term: "프렙", aliases: ["프렙"], desc: "미리 만들어 둔 준비 재료(preparation). 인퓨전·시럽 등 영업 전에 만들어 보관하는 것." },
+];
+
+function glossaryItemHTML(t) {
+  return '<div class="glossary-item"><span class="glossary-term">' + t.term + '</span><span class="glossary-desc">' + t.desc + '</span></div>';
+}
+
+// 각 레시피 카드에 등장하는 용어만 골라 접이식 설명 블록을 붙인다
+function injectGlossaries() {
+  document.querySelectorAll('.recipe-box').forEach(box => {
+    const text = box.textContent;
+    const found = TECHNIQUES.filter(t => t.aliases.some(a => text.includes(a)));
+    if (!found.length) return;
+    const det = document.createElement('details');
+    det.className = 'glossary-toggle';
+    det.innerHTML = '<summary>기법 용어 설명 (' + found.length + ')</summary>'
+      + '<div class="glossary-list">' + found.map(glossaryItemHTML).join('') + '</div>';
+    box.appendChild(det);
+  });
+  const full = document.getElementById('glossary-full');
+  if (full) full.innerHTML = TECHNIQUES.map(glossaryItemHTML).join('');
+}
+injectGlossaries();
+
+function showTechniqueScreen() {
+  hideAll();
+  document.getElementById('technique-screen').style.display = 'block';
   window.scrollTo(0, 0);
 }
 
