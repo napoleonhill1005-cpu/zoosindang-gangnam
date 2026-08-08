@@ -654,6 +654,133 @@ html, body {
 }
 .cat-technique { border-left: 5px solid var(--note); }
 
+/* === 홀 매뉴얼 (오픈 · 운영 · 마감 · 청소) === */
+.cat-hall-open    { border-left: 6px solid #4a7a5a; }
+.cat-hall-service { border-left: 6px solid #3a6a8a; }
+.cat-hall-close   { border-left: 6px solid #7a4a5a; }
+.cat-hall-clean   { border-left: 6px solid #7a6a3a; }
+
+.check-wrap { padding: 0 4px 30px; }
+.check-progress {
+  position: sticky;
+  top: 52px;
+  z-index: 9;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg);
+  padding: 8px 2px 12px;
+  margin-bottom: 6px;
+}
+.check-count {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gray);
+  white-space: nowrap;
+}
+.check-count b { color: var(--gold); font-size: 15px; }
+.check-bar {
+  flex: 1;
+  height: 6px;
+  background: var(--soft-bg);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.check-bar i {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--gold);
+  transition: width 0.25s;
+}
+.check-reset {
+  flex-shrink: 0;
+  background: none;
+  border: 1.5px solid var(--divider);
+  color: var(--gray);
+  padding: 5px 11px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+}
+.check-reset:active { background: var(--soft-bg); }
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--card-bg);
+  border: 1.5px solid #e7d6b3;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  padding: 14px 16px;
+  cursor: pointer;
+}
+.check-item:active { background: var(--soft-bg); }
+.check-box {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+  border: 2px solid var(--divider);
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+.check-text {
+  flex: 1;
+  min-width: 0;
+  font-size: 14.5px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--ink);
+  word-break: keep-all;
+}
+.check-text em {
+  /* inline-block이라야 부모의 취소선이 보조 설명까지 번지지 않는다 */
+  display: inline-block;
+  width: 100%;
+  margin-top: 4px;
+  font-size: 12.5px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.55;
+  color: var(--gray);
+}
+.check-item.checked { border-color: var(--gold); }
+.check-item.checked .check-box {
+  background: var(--gold);
+  border-color: var(--gold);
+  position: relative;
+}
+.check-item.checked .check-box::after {
+  content: "✓";
+  position: absolute;
+  left: 0; right: 0; top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1;
+  color: #fff;
+}
+.check-item.checked .check-text {
+  color: var(--gray);
+  text-decoration: line-through;
+}
+.check-item.checked .check-text em { text-decoration: none; }
+.check-note {
+  background: var(--soft-bg);
+  border-left: 4px solid var(--note);
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--ink);
+  word-break: keep-all;
+}
+
 .ment-box {
   background: var(--card-bg);
   border: 1.5px solid var(--divider);
@@ -924,9 +1051,9 @@ html, body {
       <div class="sub">홀 · 주방 · 바 관리</div>
     </div>
     <div class="category-list">
-      <div class="category-btn cat-hall">
+      <div class="category-btn cat-hall" onclick="showHallScreen()">
         <div class="cat-name">홀 관리 매뉴얼</div>
-        <div class="cat-desc">준비 중</div>
+        <div class="cat-desc">오픈 · 운영 · 마감 · 청소</div>
       </div>
       <div class="category-btn cat-kitchen">
         <div class="cat-name">주방 관리 매뉴얼</div>
@@ -935,6 +1062,172 @@ html, body {
       <div class="category-btn cat-bar-mgmt">
         <div class="cat-name">바 관리 매뉴얼</div>
         <div class="cat-desc">준비 중</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 홀 매뉴얼 허브 ===== -->
+  <div class="home-screen" id="hall-screen" style="display:none;">
+    <div class="detail-header">
+      <button class="back-btn" onclick="openMainCategory('management')">← 매장 관리로</button>
+    </div>
+    <div class="app-title" style="padding-top:8px;">
+      <h1>홀 관리 매뉴얼</h1>
+      <div class="sub">오픈 · 운영 · 마감 · 청소</div>
+    </div>
+    <div class="category-list">
+      <div class="category-btn cat-hall-open" onclick="openHallSection('open')">
+        <div class="cat-name">홀 오픈 매뉴얼</div>
+        <div class="cat-desc">영업 시작 전 준비 체크리스트</div>
+      </div>
+      <div class="category-btn cat-hall-service" onclick="openHallSection('service')">
+        <div class="cat-name">홀 운영 매뉴얼</div>
+        <div class="cat-desc">영업 중 응대 · 상황별 대응 지침</div>
+      </div>
+      <div class="category-btn cat-hall-close" onclick="openHallSection('close')">
+        <div class="cat-name">홀 마감 매뉴얼</div>
+        <div class="cat-desc">영업 종료 후 정리 체크리스트</div>
+      </div>
+      <div class="category-btn cat-hall-clean" onclick="openHallSection('clean')">
+        <div class="cat-name">홀 주기적 청소 매뉴얼</div>
+        <div class="cat-desc">일간 · 주간 · 월간 청소 체크리스트</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 홀 오픈 매뉴얼 ===== -->
+  <div class="grid-screen" id="hall-open-screen" style="display:none;">
+    <div class="detail-header">
+      <button class="back-btn" onclick="showHallScreen()">← 홀 매뉴얼로</button>
+    </div>
+    <div class="app-title" style="padding-top:8px;">
+      <h1>홀 오픈 매뉴얼</h1>
+      <div class="sub">영업 시작 전 준비</div>
+    </div>
+    <div class="check-wrap" id="ck-open">
+      <div class="check-progress">
+        <div class="check-count"><b>0</b> / 0 완료</div>
+        <div class="check-bar"><i></i></div>
+        <button class="check-reset" onclick="resetChecks(event, 'ck-open')">전체 해제</button>
+      </div>
+      <div class="check-note">아래 항목은 예시입니다. 실제 매장 오픈 업무 내용을 알려주시면 그대로 교체해 드립니다.</div>
+      <div class="list-group-title">예시 항목</div>
+      <div class="check-item" data-ck="open-01" onclick="toggleCheck(this)">
+        <span class="check-box"></span>
+        <span class="check-text">홀 조명 · 음향 켜기<em>보조 설명이 필요한 항목은 이렇게 아래에 붙습니다</em></span>
+      </div>
+      <div class="check-item" data-ck="open-02" onclick="toggleCheck(this)">
+        <span class="check-box"></span>
+        <span class="check-text">테이블 세팅 확인</span>
+      </div>
+      <div class="check-item" data-ck="open-03" onclick="toggleCheck(this)">
+        <span class="check-box"></span>
+        <span class="check-text">품절 메뉴 확인 후 공유</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 홀 운영 매뉴얼 ===== -->
+  <div class="grid-screen" id="hall-service-screen" style="display:none;">
+    <div class="detail-header">
+      <button class="back-btn" onclick="showHallScreen()">← 홀 매뉴얼로</button>
+    </div>
+    <div class="app-title" style="padding-top:8px;">
+      <h1>홀 운영 매뉴얼</h1>
+      <div class="sub">탭하면 상세 내용이 펼쳐집니다</div>
+    </div>
+    <div class="list-wrap">
+      <div class="check-note">아래 항목은 예시입니다. 실제 매장 운영 지침을 알려주시면 그대로 교체해 드립니다.</div>
+      <div class="list-item" onclick="toggleItem(this)">
+        <div class="list-head"><div class="list-main">
+          <div class="list-name">손님 맞이 · 안내</div>
+          <div class="list-en">Greeting</div>
+        </div></div>
+        <div class="list-desc">응대 순서와 멘트가 여기에 들어갑니다.</div>
+      </div>
+      <div class="list-item" onclick="toggleItem(this)">
+        <div class="list-head"><div class="list-main">
+          <div class="list-name">주문 받기</div>
+          <div class="list-en">Order Taking</div>
+        </div></div>
+        <div class="list-desc">주문 순서, 추천 멘트, 주의사항이 여기에 들어갑니다.</div>
+      </div>
+      <div class="list-item" onclick="toggleItem(this)">
+        <div class="list-head"><div class="list-main">
+          <div class="list-name">클레임 대응</div>
+          <div class="list-en">Complaint Handling</div>
+        </div></div>
+        <div class="list-desc">상황별 대응 방법이 여기에 들어갑니다.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 홀 마감 매뉴얼 ===== -->
+  <div class="grid-screen" id="hall-close-screen" style="display:none;">
+    <div class="detail-header">
+      <button class="back-btn" onclick="showHallScreen()">← 홀 매뉴얼로</button>
+    </div>
+    <div class="app-title" style="padding-top:8px;">
+      <h1>홀 마감 매뉴얼</h1>
+      <div class="sub">영업 종료 후 정리</div>
+    </div>
+    <div class="check-wrap" id="ck-close">
+      <div class="check-progress">
+        <div class="check-count"><b>0</b> / 0 완료</div>
+        <div class="check-bar"><i></i></div>
+        <button class="check-reset" onclick="resetChecks(event, 'ck-close')">전체 해제</button>
+      </div>
+      <div class="check-note">아래 항목은 예시입니다. 실제 매장 마감 업무 내용을 알려주시면 그대로 교체해 드립니다.</div>
+      <div class="list-group-title">예시 항목</div>
+      <div class="check-item" data-ck="close-01" onclick="toggleCheck(this)">
+        <span class="check-box"></span>
+        <span class="check-text">테이블 · 좌석 정리</span>
+      </div>
+      <div class="check-item" data-ck="close-02" onclick="toggleCheck(this)">
+        <span class="check-box"></span>
+        <span class="check-text">마감 정산</span>
+      </div>
+      <div class="check-item" data-ck="close-03" onclick="toggleCheck(this)">
+        <span class="check-box"></span>
+        <span class="check-text">전기 · 가스 · 문단속<em>퇴근 전 마지막으로 확인</em></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 홀 주기적 청소 매뉴얼 ===== -->
+  <div class="grid-screen" id="hall-clean-screen" style="display:none;">
+    <div class="detail-header">
+      <button class="back-btn" onclick="showHallScreen()">← 홀 매뉴얼로</button>
+    </div>
+    <div class="app-title" style="padding-top:8px;">
+      <h1>홀 주기적 청소</h1>
+      <div class="sub">일간 · 주간 · 월간</div>
+    </div>
+    <div class="check-wrap" id="ck-clean">
+      <div class="check-progress">
+        <div class="check-count"><b>0</b> / 0 완료</div>
+        <div class="check-bar"><i></i></div>
+        <button class="check-reset" onclick="resetChecks(event, 'ck-clean')">전체 해제</button>
+      </div>
+      <div class="check-note">아래 항목은 예시입니다. 실제 청소 항목과 주기를 알려주시면 그대로 교체해 드립니다.</div>
+      <div class="list-group-title">매일</div>
+      <div class="check-item" data-ck="clean-d-01" onclick="toggleCheck(this)">
+        <span class="check-box"></span>
+        <span class="check-text">홀 바닥 쓸기 · 닦기</span>
+      </div>
+      <div class="check-item" data-ck="clean-d-02" onclick="toggleCheck(this)">
+        <span class="check-box"></span>
+        <span class="check-text">화장실 점검 · 비품 보충</span>
+      </div>
+      <div class="list-group-title">주 1회</div>
+      <div class="check-item" data-ck="clean-w-01" onclick="toggleCheck(this)">
+        <span class="check-box"></span>
+        <span class="check-text">유리창 · 출입문 닦기</span>
+      </div>
+      <div class="list-group-title">월 1회</div>
+      <div class="check-item" data-ck="clean-m-01" onclick="toggleCheck(this)">
+        <span class="check-box"></span>
+        <span class="check-text">에어컨 필터 청소<em>주기 항목은 이렇게 그룹으로 나눠 표시됩니다</em></span>
       </div>
     </div>
   </div>
@@ -4091,6 +4384,11 @@ function hideAll() {
   document.getElementById('whisky-screen').style.display = 'none';
   document.getElementById('special-screen').style.display = 'none';
   document.getElementById('technique-screen').style.display = 'none';
+  document.getElementById('hall-screen').style.display = 'none';
+  document.getElementById('hall-open-screen').style.display = 'none';
+  document.getElementById('hall-service-screen').style.display = 'none';
+  document.getElementById('hall-close-screen').style.display = 'none';
+  document.getElementById('hall-clean-screen').style.display = 'none';
   document.getElementById('food-lunch-screen').style.display = 'none';
   document.getElementById('food-omakase-screen').style.display = 'none';
   document.getElementById('food-main-screen').style.display = 'none';
@@ -4206,6 +4504,85 @@ function openFoodCategory(cat) {
   document.getElementById('food-' + cat + '-screen').style.display = 'block';
   window.scrollTo(0, 0);
 }
+
+// === 홀 매뉴얼 ===
+function showHallScreen() {
+  hideAll();
+  document.getElementById('hall-screen').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+function openHallSection(sec) {
+  hideAll();
+  document.getElementById('hall-' + sec + '-screen').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+// === 체크리스트 (오픈 / 마감 / 청소) ===
+// 체크 상태는 휴대폰에 저장되고, 날짜가 바뀌면 자동으로 초기화된다.
+const CHECK_KEY = 'zsd-hall-check';
+
+function todayStr() {
+  const d = new Date();
+  return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+}
+
+// 사파리 프라이빗 모드 등에서 localStorage가 막혀 있어도 앱이 죽지 않도록 감싼다
+function readChecks() {
+  try {
+    const raw = localStorage.getItem(CHECK_KEY);
+    if (!raw) return {};
+    const data = JSON.parse(raw);
+    if (!data || data.date !== todayStr()) return {};   // 날짜가 지났으면 버린다
+    return data.ids || {};
+  } catch (e) { return {}; }
+}
+
+function writeChecks(ids) {
+  try {
+    localStorage.setItem(CHECK_KEY, JSON.stringify({ date: todayStr(), ids: ids }));
+  } catch (e) { /* 저장 불가 — 화면 동작에는 영향 없음 */ }
+}
+
+function collectChecks() {
+  const ids = {};
+  document.querySelectorAll('.check-item.checked').forEach(el => { ids[el.dataset.ck] = 1; });
+  return ids;
+}
+
+function updateProgress(wrap) {
+  if (!wrap) return;
+  const total = wrap.querySelectorAll('.check-item').length;
+  const done = wrap.querySelectorAll('.check-item.checked').length;
+  const count = wrap.querySelector('.check-count');
+  const bar = wrap.querySelector('.check-bar i');
+  if (count) count.innerHTML = '<b>' + done + '</b> / ' + total + ' 완료';
+  if (bar) bar.style.width = (total ? (done / total) * 100 : 0) + '%';
+}
+
+function toggleCheck(el) {
+  el.classList.toggle('checked');
+  writeChecks(collectChecks());
+  updateProgress(el.closest('.check-wrap'));
+}
+
+function resetChecks(ev, wrapId) {
+  if (ev) ev.stopPropagation();
+  const wrap = document.getElementById(wrapId);
+  if (!wrap) return;
+  wrap.querySelectorAll('.check-item.checked').forEach(el => el.classList.remove('checked'));
+  writeChecks(collectChecks());
+  updateProgress(wrap);
+}
+
+function loadChecks() {
+  const ids = readChecks();
+  document.querySelectorAll('.check-item').forEach(el => {
+    if (ids[el.dataset.ck]) el.classList.add('checked');
+  });
+  document.querySelectorAll('.check-wrap').forEach(updateProgress);
+}
+loadChecks();
 
 // === 기법 용어 사전 ===
 // aliases: 레시피 본문에 실제로 등장하는 표기들. 하나라도 카드 텍스트에 있으면 해당 카드에 설명 표시.
