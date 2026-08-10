@@ -1190,6 +1190,12 @@ html, body {
         <div class="check-bar"><i></i></div>
         <button class="check-reset" onclick="resetChecks(event, 'ck-close')">전체 해제</button>
       </div>
+      <div class="list-group-title">영업 중 미리</div>
+      <div class="check-item" data-ck="close-10" onclick="toggleCheck(this)">
+        <span class="check-box"></span>
+        <span class="check-text">분리수거<em>보통 밤 10시 이후, 쓰레기가 어느 정도 쌓이고 손님이 빠져 홀 서버 부담이 줄었을 때 진행한다.</em></span>
+      </div>
+
       <div class="list-group-title">층별 마감 — 2층 → 지하 → 홀 순서</div>
       <div class="check-item" data-ck="close-03" onclick="toggleCheck(this)">
         <span class="check-box"></span>
@@ -1216,6 +1222,16 @@ html, body {
       <div class="check-item" data-ck="close-06" onclick="toggleCheck(this)">
         <span class="check-box"></span>
         <span class="check-text">정문 촛불 끄기<em>두 군데</em></span>
+      </div>
+
+      <div class="list-group-title">에어컨 끄기</div>
+      <div class="check-item" data-ck="close-11" onclick="toggleCheck(this)">
+        <span class="check-box"></span>
+        <span class="check-text">31 · 32 · 33 · 38 · 41 · 47번 에어컨 끄기<em>긴 리모컨으로 끈다</em></span>
+      </div>
+      <div class="check-item" data-ck="close-12" onclick="toggleCheck(this)">
+        <span class="check-box"></span>
+        <span class="check-text">홀 에어컨 2개 끄기<em>짧은 리모컨으로 끈다</em></span>
       </div>
 
       <div class="list-group-title">기기</div>
