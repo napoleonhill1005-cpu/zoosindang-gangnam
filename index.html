@@ -657,6 +657,7 @@ html, body {
 /* === 홀 매뉴얼 (오픈 · 운영 · 마감 · 청소) === */
 .cat-hall-open    { border-left: 6px solid #4a7a5a; }
 .cat-hall-close   { border-left: 6px solid #7a4a5a; }
+.cat-hall-pager   { border-left: 6px solid #3a6a8a; }
 .cat-hall-clean   { border-left: 6px solid #7a6a3a; }
 
 .check-wrap { padding: 0 4px 30px; }
@@ -1083,6 +1084,10 @@ html, body {
         <div class="cat-name">홀 마감 매뉴얼</div>
         <div class="cat-desc">마감 순서 · 좌석 안내 · 정리 체크리스트</div>
       </div>
+      <div class="category-btn cat-hall-pager" onclick="openHallSection('pager')">
+        <div class="cat-name">진동벨 시계 사용법</div>
+        <div class="cat-desc">링고 페이저 GB-650 · 충전 · 설정</div>
+      </div>
       <div class="category-btn cat-hall-clean" onclick="openHallSection('clean')">
         <div class="cat-name">홀 주기적 청소 매뉴얼</div>
         <div class="cat-desc">일간 · 주간 · 월간 청소 체크리스트 (준비 중)</div>
@@ -1303,6 +1308,116 @@ html, body {
       <div class="check-item" data-ck="close-16" onclick="toggleCheck(this)">
         <span class="check-box"></span>
         <span class="check-text">조명 전부 끄기<em>맨 마지막에 끈다</em></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 진동벨 시계 사용법 ===== -->
+  <div class="grid-screen" id="hall-pager-screen" style="display:none;">
+    <div class="detail-header">
+      <button class="back-btn" onclick="showHallScreen()">← 홀 매뉴얼로</button>
+    </div>
+    <div class="app-title" style="padding-top:8px;">
+      <h1>진동벨 시계 사용법</h1>
+      <div class="sub">링고 페이저 GB-650 · 탭하면 펼쳐집니다</div>
+    </div>
+    <div class="list-wrap">
+      <div class="list-group-title">기본 사용</div>
+      <div class="list-item" onclick="toggleItem(this)">
+        <div class="list-head"><div class="list-main">
+          <div class="list-name">충전 방법</div>
+          <div class="list-en">Charging</div>
+        </div></div>
+        <div class="list-desc">
+          ① 어댑터와 USB 케이블을 연결한다<br>
+          ② Micro-USB 잭을 충전 거치대에 연결한다<br>
+          ③ 페이저를 충전 거치대에 결합한다<br>
+          ④ 충전이 끝나면 거치대 우측을 눌러 페이저를 분리한다<br><br>
+          <b>배터리</b> — 약 20시간 (호출 100회 기준 17시간)<br><br>
+          <b>주의</b> — 전용 AC 어댑터(5V 1A)가 아닌 <b>9V 고속충전기를 쓰면 충전 회로가 손상될 수 있다.</b>
+          전원은 AC 110~240V에 연결하고, USB 허브에 연결할 때는 어댑터 전원이 있는 장치를 쓴다.
+        </div>
+      </div>
+      <div class="list-item" onclick="toggleItem(this)">
+        <div class="list-head"><div class="list-main">
+          <div class="list-name">화면 보는 법</div>
+          <div class="list-en">Display</div>
+        </div></div>
+        <div class="list-desc">
+          화면에는 <b>미확인 메시지 수 · 현재 시간 · 알람 모드 · 배터리 잔량</b>이 표시된다.<br><br>
+          · 화면이 꺼진 상태에서 <b>SET</b>을 누르면 켜지고, 15초 뒤 자동으로 꺼진다<br>
+          · 호출이 오면 소리·진동과 함께 호출 내용이 점멸한다<br>
+          · 배터리 잔량은 오른쪽 위에 표시된다<br>
+          · 메시지가 있을 때 <b>∨</b>를 누르면 바로 확인할 수 있다
+        </div>
+      </div>
+      <div class="list-item" onclick="toggleItem(this)">
+        <div class="list-head"><div class="list-main">
+          <div class="list-name">메시지 확인 · 삭제</div>
+          <div class="list-en">Messages</div>
+        </div></div>
+        <div class="list-desc">
+          · 전체 메시지 화면에서 <b>SET</b>을 누르면 개별 메시지를 볼 수 있다<br>
+          · 메시지 내용은 숫자·영문·특수문자 <b>최대 10자리</b><br>
+          · <b>최대 20개</b>까지 저장되고, 벨 모양 이미지 안에 아직 확인하지 않은 메시지 개수가 표시된다<br>
+          · 개별 메시지 화면에서 <b>SET을 1초간 길게</b> 누르면 그 메시지 또는 전체 메시지를 지울 수 있다
+        </div>
+      </div>
+
+      <div class="list-group-title">설정 — 관리자용</div>
+      <div class="list-item" onclick="toggleItem(this)">
+        <div class="list-head"><div class="list-main">
+          <div class="list-name">설정 메뉴 들어가기</div>
+          <div class="list-en">Settings Menu</div>
+        </div></div>
+        <div class="list-desc">
+          ① <b>SET</b>을 1초간 길게 누르면 비밀번호 입력창이 뜬다<br>
+          ② <b>△</b>를 3번 눌러 비밀번호 <b>0000</b>을 입력한다<br>
+          ③ <b>△</b>를 1번 눌러 설정 메뉴로 들어간다<br><br>
+          설정은 <b>벨 관리 / 소리·진동 / 화면표시 / 장치 관리</b> 네 가지로 나뉜다.
+          나올 때는 <b>∨</b>를 누른다.
+        </div>
+      </div>
+      <div class="list-item" onclick="toggleItem(this)">
+        <div class="list-head"><div class="list-main">
+          <div class="list-name">주요 설정값</div>
+          <div class="list-en">Options</div>
+        </div></div>
+        <div class="list-desc">
+          · <b>소리/진동</b> — 기본 진동. 소리 / 진동 / 소리+진동 / 무음 중 선택<br>
+          · <b>알람 시간</b> — 기본 1초, 0~60초<br>
+          · <b>중복 수신 방지</b> — 기본 0초, 0~60초<br>
+          · <b>표시 모드</b> — 기본 430. 430 / 440 / 350 / A10<br>
+          · <b>시간 설정</b> — 24시간 디지털 시계<br>
+          · <b>제품 정보</b> — 버전, 사용자 이름, 등록된 벨 개수 확인<br>
+          · <b>자가 테스트</b> — 이상이 있을 때 직접 테스트<br>
+          · <b>초기화</b> — 설정값과 등록된 벨을 전부 초기화 (주의)
+        </div>
+      </div>
+      <div class="list-item" onclick="toggleItem(this)">
+        <div class="list-head"><div class="list-main">
+          <div class="list-name">업체 · 그룹 등록</div>
+          <div class="list-en">Group Registration</div>
+        </div></div>
+        <div class="list-desc">
+          제품에 고유 번호를 부여해 다른 기기와 섞이지 않게 하는 기능이다. (수신기 ST-5010과 함께 사용)<br><br>
+          설정 메뉴 진입 → <b>벨 관리</b>(SET 1번) → <b>△ 1번 후 SET 1번</b> → 번호 입력 → <b>∨</b>로 나옴<br><br>
+          번호 입력은 <b>SET으로 숫자 증가, △로 자릿수 이동</b>.<br>
+          업체번호 01~99번, 그룹번호 00~99번까지 설정할 수 있다.
+        </div>
+      </div>
+      <div class="list-item" onclick="toggleItem(this)">
+        <div class="list-head"><div class="list-main">
+          <div class="list-name">삭제벨 등록</div>
+          <div class="list-en">Clear Bell</div>
+        </div></div>
+        <div class="list-desc">
+          호출된 번호를 수신기 화면에서 지우는 기능을 벨에 부여한다.<br><br>
+          설정 메뉴 진입 → <b>벨 관리</b>(SET 1번) → <b>벨 등록</b>(SET 1번) →
+          SET을 눌러 문구 입력 → 문자 점멸이 멈추면 <b>△ 1번</b> →
+          SET을 눌러 <b>Ctr 이미지</b> 선택 → 벨을 1회 누르면 "등록되었습니다" 표시<br><br>
+          <b>주의</b> — 삭제벨은 특수 이미지가 사용되지 않은 호출벨에만 쓸 수 있다.
+        </div>
       </div>
     </div>
   </div>
@@ -4500,6 +4615,7 @@ function hideAll() {
   document.getElementById('hall-screen').style.display = 'none';
   document.getElementById('hall-open-screen').style.display = 'none';
   document.getElementById('hall-close-screen').style.display = 'none';
+  document.getElementById('hall-pager-screen').style.display = 'none';
   document.getElementById('hall-clean-screen').style.display = 'none';
   document.getElementById('food-lunch-screen').style.display = 'none';
   document.getElementById('food-omakase-screen').style.display = 'none';
