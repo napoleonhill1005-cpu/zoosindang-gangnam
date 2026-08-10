@@ -1082,7 +1082,7 @@ html, body {
       </div>
       <div class="category-btn cat-hall-service" onclick="openHallSection('service')">
         <div class="cat-name">홀 운영 매뉴얼</div>
-        <div class="cat-desc">영업 중 응대 · 상황별 대응 지침 (준비 중)</div>
+        <div class="cat-desc">구역 · 마감 순서 · 좌석 안내 지침</div>
       </div>
       <div class="category-btn cat-hall-close" onclick="openHallSection('close')">
         <div class="cat-name">홀 마감 매뉴얼</div>
@@ -1152,27 +1152,46 @@ html, body {
       <div class="sub">탭하면 상세 내용이 펼쳐집니다</div>
     </div>
     <div class="list-wrap">
-      <div class="check-note">준비 중인 화면입니다. 아래 항목은 예시이므로 실제 업무와 다릅니다.</div>
       <div class="list-item" onclick="toggleItem(this)">
         <div class="list-head"><div class="list-main">
-          <div class="list-name">손님 맞이 · 안내</div>
-          <div class="list-en">Greeting</div>
+          <div class="list-name">매장 구역</div>
+          <div class="list-en">Zones</div>
         </div></div>
-        <div class="list-desc">응대 순서와 멘트가 여기에 들어갑니다.</div>
+        <div class="list-desc">매장은 <b>지하 · 홀 · 2층</b> 세 구역이다.</div>
       </div>
       <div class="list-item" onclick="toggleItem(this)">
         <div class="list-head"><div class="list-main">
-          <div class="list-name">주문 받기</div>
-          <div class="list-en">Order Taking</div>
+          <div class="list-name">마감 순서 — 2층부터</div>
+          <div class="list-en">Closing Order</div>
         </div></div>
-        <div class="list-desc">주문 순서, 추천 멘트, 주의사항이 여기에 들어갑니다.</div>
+        <div class="list-desc">
+          밤 11시가 지나면 미리 마감할 수 있는 구역은 먼저 마감해두는 것이 효율적이다.
+          그래서 <b>2층 → 지하 → 홀</b> 순서로 마감한다.<br><br>
+          2층을 가장 먼저 마감하는 이유는 두 가지다.
+          손님이 제일 빨리 나가는 자리이고, 문을 닫아두면 손님들이 2층 공간이 있다는 걸 잘 모른다.
+        </div>
       </div>
       <div class="list-item" onclick="toggleItem(this)">
         <div class="list-head"><div class="list-main">
-          <div class="list-name">클레임 대응</div>
-          <div class="list-en">Complaint Handling</div>
+          <div class="list-name">2층 안내 중단 시간</div>
+          <div class="list-en">2F Seating Cutoff</div>
         </div></div>
-        <div class="list-desc">상황별 대응 방법이 여기에 들어갑니다.</div>
+        <div class="list-desc">
+          아래 시간이 지나면 <b>2층으로 손님을 안내하지 않는다.</b> 그만큼 마감이 빨라진다.<br><br>
+          · 일 · 월 · 화 · 수 — <b>밤 10시 30분</b>부터<br>
+          · 목 · 금 · 토 — <b>밤 11시</b>부터<br><br>
+          단, <b>10명 이상 단체 손님</b>이 있거나 <b>2층 예약</b>이 있으면 어쩔 수 없이 안내한다.
+        </div>
+      </div>
+      <div class="list-item" onclick="toggleItem(this)">
+        <div class="list-head"><div class="list-main">
+          <div class="list-name">11시 이후 좌석 안내</div>
+          <div class="list-en">Late-night Seating</div>
+        </div></div>
+        <div class="list-desc">
+          지하에 손님이 많고 홀이 비어 있는 경우, <b>11시 이후 새로 들어오는 손님은 지하로 안내</b>한다.
+          손님을 한 구역에 모아야 홀을 먼저 마감할 수 있다.
+        </div>
       </div>
     </div>
   </div>
@@ -1192,7 +1211,11 @@ html, body {
         <div class="check-bar"><i></i></div>
         <button class="check-reset" onclick="resetChecks(event, 'ck-close')">전체 해제</button>
       </div>
-      <div class="list-group-title">층별 마감</div>
+      <div class="list-group-title">층별 마감 — 2층 → 지하 → 홀 순서</div>
+      <div class="check-item" data-ck="close-03" onclick="toggleCheck(this)">
+        <span class="check-box"></span>
+        <span class="check-text">2층 마감<em>가장 먼저 마감한다. 손님이 제일 빨리 나가고, 문을 닫아두면 손님들이 2층 공간을 잘 모른다.</em></span>
+      </div>
       <div class="check-item" data-ck="close-01" onclick="toggleCheck(this)">
         <span class="check-box"></span>
         <span class="check-text">지하 마감</span>
@@ -1200,10 +1223,6 @@ html, body {
       <div class="check-item" data-ck="close-02" onclick="toggleCheck(this)">
         <span class="check-box"></span>
         <span class="check-text">홀 마감</span>
-      </div>
-      <div class="check-item" data-ck="close-03" onclick="toggleCheck(this)">
-        <span class="check-box"></span>
-        <span class="check-text">2층 마감</span>
       </div>
 
       <div class="list-group-title">촛불 끄기</div>
@@ -1231,7 +1250,7 @@ html, body {
       </div>
       <div class="check-item" data-ck="close-08" onclick="toggleCheck(this)">
         <span class="check-box"></span>
-        <span class="check-text">정문 캐치테이블 웨이팅 기계 끄기<em>코드 뽑고 전원 끄기</em></span>
+        <span class="check-text">정문 캐치테이블 웨이팅 기계 끄기<em>코드 뽑기</em></span>
       </div>
     </div>
   </div>
