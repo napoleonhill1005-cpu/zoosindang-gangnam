@@ -1110,19 +1110,34 @@ html, body {
         <div class="check-bar"><i></i></div>
         <button class="check-reset" onclick="resetChecks(event, 'ck-open')">전체 해제</button>
       </div>
-      <div class="check-note">아래 항목은 예시입니다. 실제 매장 오픈 업무 내용을 알려주시면 그대로 교체해 드립니다.</div>
-      <div class="list-group-title">예시 항목</div>
+      <div class="list-group-title">에어컨</div>
       <div class="check-item" data-ck="open-01" onclick="toggleCheck(this)">
         <span class="check-box"></span>
-        <span class="check-text">홀 조명 · 음향 켜기<em>보조 설명이 필요한 항목은 이렇게 아래에 붙습니다</em></span>
+        <span class="check-text">에어컨 틀기<em>여름 — 냉방 20도 / 겨울 — 난방 25도</em></span>
       </div>
       <div class="check-item" data-ck="open-02" onclick="toggleCheck(this)">
         <span class="check-box"></span>
-        <span class="check-text">테이블 세팅 확인</span>
+        <span class="check-text">지하 · 홀 에어컨 상시 가동<em>영업 중 계속 틀어둔다</em></span>
       </div>
       <div class="check-item" data-ck="open-03" onclick="toggleCheck(this)">
         <span class="check-box"></span>
-        <span class="check-text">품절 메뉴 확인 후 공유</span>
+        <span class="check-text">32번 · 40번대 에어컨 확인<em>예약이 있을 때만 틀어둔다</em></span>
+      </div>
+
+      <div class="list-group-title">매장 외부</div>
+      <div class="check-item" data-ck="open-04" onclick="toggleCheck(this)">
+        <span class="check-box"></span>
+        <span class="check-text">정문 · 후문 쓰레기 청소<em>눈에 보이는 것 위주로 가볍게</em></span>
+      </div>
+      <div class="check-item" data-ck="open-05" onclick="toggleCheck(this)">
+        <span class="check-box"></span>
+        <span class="check-text">간판 코드 꽂기</span>
+      </div>
+
+      <div class="list-group-title">홀 준비</div>
+      <div class="check-item" data-ck="open-06" onclick="toggleCheck(this)">
+        <span class="check-box"></span>
+        <span class="check-text">예약자 명단 확인 후 세팅</span>
       </div>
     </div>
   </div>
@@ -1177,19 +1192,42 @@ html, body {
         <div class="check-bar"><i></i></div>
         <button class="check-reset" onclick="resetChecks(event, 'ck-close')">전체 해제</button>
       </div>
-      <div class="check-note">아래 항목은 예시입니다. 실제 매장 마감 업무 내용을 알려주시면 그대로 교체해 드립니다.</div>
-      <div class="list-group-title">예시 항목</div>
+      <div class="list-group-title">층별 마감</div>
       <div class="check-item" data-ck="close-01" onclick="toggleCheck(this)">
         <span class="check-box"></span>
-        <span class="check-text">테이블 · 좌석 정리</span>
+        <span class="check-text">지하 마감</span>
       </div>
       <div class="check-item" data-ck="close-02" onclick="toggleCheck(this)">
         <span class="check-box"></span>
-        <span class="check-text">마감 정산</span>
+        <span class="check-text">홀 마감</span>
       </div>
       <div class="check-item" data-ck="close-03" onclick="toggleCheck(this)">
         <span class="check-box"></span>
-        <span class="check-text">전기 · 가스 · 문단속<em>퇴근 전 마지막으로 확인</em></span>
+        <span class="check-text">2층 마감</span>
+      </div>
+
+      <div class="list-group-title">촛불 끄기</div>
+      <div class="check-item" data-ck="close-04" onclick="toggleCheck(this)">
+        <span class="check-box"></span>
+        <span class="check-text">촛불 전부 끄기<em>리모콘으로 한 번에</em></span>
+      </div>
+      <div class="check-item" data-ck="close-05" onclick="toggleCheck(this)">
+        <span class="check-box"></span>
+        <span class="check-text">화장실 계단 촛불 끄기</span>
+      </div>
+      <div class="check-item" data-ck="close-06" onclick="toggleCheck(this)">
+        <span class="check-box"></span>
+        <span class="check-text">정문 촛불 끄기<em>두 군데</em></span>
+      </div>
+
+      <div class="list-group-title">기기</div>
+      <div class="check-item" data-ck="close-07" onclick="toggleCheck(this)">
+        <span class="check-box"></span>
+        <span class="check-text">태블릿 3대 충전하기<em>예약자 명단 아이패드 · 웨이팅 갤럭시탭 · 음악 갤럭시탭</em></span>
+      </div>
+      <div class="check-item" data-ck="close-08" onclick="toggleCheck(this)">
+        <span class="check-box"></span>
+        <span class="check-text">정문 캐치테이블 웨이팅 기계 끄기<em>코드 뽑고 전원 끄기</em></span>
       </div>
     </div>
   </div>
