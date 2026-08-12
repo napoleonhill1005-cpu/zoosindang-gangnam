@@ -1110,6 +1110,12 @@ html, body {
         <div class="check-bar"><i></i></div>
         <button class="check-reset" onclick="resetChecks(event, 'ck-open')">전체 해제</button>
       </div>
+      <div class="list-group-title">출근 직후</div>
+      <div class="check-item" data-ck="open-07" onclick="toggleCheck(this)">
+        <span class="check-box"></span>
+        <span class="check-text">후문 경비 해제<em>후문에서 <b>2057#</b> 을 다시 입력하면 경비가 해제된다</em></span>
+      </div>
+
       <div class="list-group-title">에어컨</div>
       <div class="check-item" data-ck="open-01" onclick="toggleCheck(this)">
         <span class="check-box"></span>
@@ -1297,7 +1303,7 @@ html, body {
       </div>
       <div class="check-item" data-ck="close-23" onclick="toggleCheck(this)">
         <span class="check-box"></span>
-        <span class="check-text">후문 잠그기<em>도어락 비밀번호로 잠근다 (비밀번호는 매장에서 확인)</em></span>
+        <span class="check-text">후문 경비모드 걸기<em><b>2057#</b> 을 입력하면 경비모드가 걸린다</em></span>
       </div>
 
       <div class="list-group-title">마무리</div>
