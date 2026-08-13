@@ -1131,10 +1131,26 @@ html, body {
         <div class="check-bar"><i></i></div>
         <button class="check-reset" onclick="resetChecks(event, 'ck-open')">전체 해제</button>
       </div>
-      <div class="list-group-title">출근 직후</div>
+      <div class="list-group-title">출근 직후 — 순서대로</div>
       <div class="check-item" data-ck="open-07" onclick="toggleCheck(this)">
         <span class="check-box"></span>
         <span class="check-text">후문 경비 해제<em>후문에서 <b>2057#</b> 을 다시 입력하면 경비가 해제된다</em></span>
+      </div>
+      <div class="check-item" data-ck="open-06" onclick="toggleCheck(this)">
+        <span class="check-box"></span>
+        <span class="check-text">예약자 명단 확인 후 세팅<em>경비 해제 후 가장 먼저 확인한다</em></span>
+      </div>
+      <div class="check-item" data-ck="open-08" onclick="toggleCheck(this)">
+        <span class="check-box"></span>
+        <span class="check-text">간판 코드 꽂고 문 열기</span>
+      </div>
+      <div class="check-item" data-ck="open-09" onclick="toggleCheck(this)">
+        <span class="check-box"></span>
+        <span class="check-text">아래쪽 캐치테이블 웨이팅보드 — 바로입장<em>웨이팅보드를 설정해서 '바로입장' 상태로 만든다</em></span>
+      </div>
+      <div class="check-item" data-ck="open-10" onclick="toggleCheck(this)">
+        <span class="check-box"></span>
+        <span class="check-text">갤럭시탭 캐치테이블 — 바로입장<em>'운영종료' → '바로입장'으로 변경한다</em></span>
       </div>
 
       <div class="list-group-title">에어컨</div>
@@ -1155,16 +1171,6 @@ html, body {
       <div class="check-item" data-ck="open-04" onclick="toggleCheck(this)">
         <span class="check-box"></span>
         <span class="check-text">정문 · 후문 쓰레기 청소<em>눈에 보이는 것 위주로 가볍게</em></span>
-      </div>
-      <div class="check-item" data-ck="open-05" onclick="toggleCheck(this)">
-        <span class="check-box"></span>
-        <span class="check-text">간판 코드 꽂기</span>
-      </div>
-
-      <div class="list-group-title">홀 준비</div>
-      <div class="check-item" data-ck="open-06" onclick="toggleCheck(this)">
-        <span class="check-box"></span>
-        <span class="check-text">예약자 명단 확인 후 세팅</span>
       </div>
     </div>
   </div>
@@ -1349,6 +1355,55 @@ html, body {
       <div class="sub">링고 페이저 GB-650 · 탭하면 펼쳐집니다</div>
     </div>
     <div class="list-wrap">
+      <div class="list-group-title">자주 쓰는 기능</div>
+      <div class="list-item" onclick="toggleItem(this)">
+        <div class="list-head"><div class="list-main">
+          <div class="list-name">벨 등록하는 법</div>
+          <div class="list-en">Register Bell</div>
+        </div></div>
+        <div class="list-desc">
+          ① <b>SET 1초 길게</b> → <b>△ 3번</b>(비밀번호 0000) → <b>△ 1번</b> — 설정 메뉴 진입<br>
+          ② <b>SET 1번</b> — 벨 관리 선택<br>
+          ③ <b>SET 1번</b> — 벨 등록 모드<br>
+          ④ <b>SET</b>을 눌러 문구 입력<br>
+          &nbsp;&nbsp;· SET 짧게 — 문자 증가<br>
+          &nbsp;&nbsp;· SET 1초 길게 — 숫자 → 특수문자 → 영문 전환<br>
+          &nbsp;&nbsp;· △ — 자릿수 이동<br>
+          ⑤ 문자 점멸이 멈추면 <b>△ 1번</b> → <b>SET</b>으로 이미지 선택<br>
+          ⑥ <b>벨을 1회 누르면</b> "등록되었습니다" 표시 — 완료
+        </div>
+      </div>
+      <div class="list-item" onclick="toggleItem(this)">
+        <div class="list-head"><div class="list-main">
+          <div class="list-name">벨 삭제하는 법</div>
+          <div class="list-en">Delete Bell</div>
+        </div></div>
+        <div class="list-desc">
+          ① <b>SET 1초 길게</b> → <b>△ 3번</b>(비밀번호 0000) → <b>△ 1번</b> — 설정 메뉴 진입<br>
+          ② <b>SET 1번</b> — 벨 관리 선택<br>
+          ③ <b>△ 2번 → SET 1번</b> — 벨 삭제 모드<br>
+          ④ <b>SET 1번</b> 누르고 <b>지울 벨의 문구를 그대로 입력</b><br>
+          ⑤ 문자 점멸이 멈출 때까지 기다린 뒤 <b>SET 1초 길게</b><br>
+          ⑥ "삭제되었습니다" 표시 → <b>∨</b>로 나옴 — 완료
+        </div>
+      </div>
+      <div class="list-item" onclick="toggleItem(this)">
+        <div class="list-head"><div class="list-main">
+          <div class="list-name">소리 · 진동 바꾸는 법</div>
+          <div class="list-en">Sound / Vibration</div>
+        </div></div>
+        <div class="list-desc">
+          호출이 왔을 때 나는 수신음을 바꾼다. (진동 ↔ 소리 등)<br><br>
+          ① <b>SET 1초 길게</b> → <b>△ 3번</b>(비밀번호 0000) → <b>△ 1번</b> — 설정 메뉴 진입<br>
+          ② <b>△ 1번</b> — 소리/진동 메뉴로 이동<br>
+          ③ <b>SET 1번</b> — 소리/진동 메뉴 선택<br>
+          ④ <b>△로 수신음 타입 선택</b> → <b>SET</b>으로 확정<br>
+          &nbsp;&nbsp;· 종류 — <b>소리 / 진동 / 소리+진동 / 무음</b><br>
+          ⑤ <b>∨</b>로 나옴 — 완료<br><br>
+          각 종류마다 수신음이 4가지씩 있다. 기본값은 진동.
+        </div>
+      </div>
+
       <div class="list-group-title">기본 사용</div>
       <div class="list-item" onclick="toggleItem(this)">
         <div class="list-head"><div class="list-main">
@@ -1391,7 +1446,7 @@ html, body {
         </div>
       </div>
 
-      <div class="list-group-title">설정 — 관리자용</div>
+      <div class="list-group-title">기타 설정 — 관리자용</div>
       <div class="list-item" onclick="toggleItem(this)">
         <div class="list-head"><div class="list-main">
           <div class="list-name">설정 메뉴 들어가기</div>
@@ -1417,19 +1472,6 @@ html, body {
           · <b>△ 짧게</b> — 자릿수 이동<br>
           · <b>△ (점멸 멈춘 뒤)</b> — 이모티콘 선택<br>
           · <b>∨ 짧게</b> — 메뉴 나가기
-        </div>
-      </div>
-      <div class="list-item" onclick="toggleItem(this)">
-        <div class="list-head"><div class="list-main">
-          <div class="list-name">소리 · 진동 설정</div>
-          <div class="list-en">Sound / Vibration</div>
-        </div></div>
-        <div class="list-desc">
-          호출이 왔을 때 나는 수신음 타입을 바꾼다.<br><br>
-          설정 메뉴 진입 → <b>△ 1번</b>(메뉴 이동) → <b>소리/진동</b>(SET 1번) →
-          <b>△로 타입 선택, SET으로 확정</b> → <b>∨</b>로 나옴<br><br>
-          <b>수신음 종류</b> — 소리 / 진동 / 소리+진동 / 무음<br>
-          종류마다 각각 4가지 수신음이 있다. 기본값은 진동.
         </div>
       </div>
       <div class="list-item" onclick="toggleItem(this)">
@@ -1504,18 +1546,6 @@ html, body {
           SET을 눌러 문구 입력 → 문자 점멸이 멈추면 <b>△ 1번</b> →
           SET을 눌러 <b>Ctr 이미지</b> 선택 → 벨을 1회 누르면 "등록되었습니다" 표시<br><br>
           <b>주의</b> — 삭제벨은 특수 이미지가 사용되지 않은 호출벨에만 쓸 수 있다.
-        </div>
-      </div>
-      <div class="list-item" onclick="toggleItem(this)">
-        <div class="list-head"><div class="list-main">
-          <div class="list-name">벨 삭제</div>
-          <div class="list-en">Delete Bell</div>
-        </div></div>
-        <div class="list-desc">
-          페이저에 등록된 벨을 지운다.<br><br>
-          설정 메뉴 진입 → <b>벨 관리</b>(SET 1번) → <b>△ 2번 후 SET 1번</b>(벨 삭제) →
-          SET 1번 누르고 <b>지울 벨의 문구를 그대로 입력</b> → 문자 점멸이 멈출 때까지 기다림 →
-          <b>SET을 1초간 길게</b> 누르면 "삭제되었습니다" 표시 → <b>∨</b>로 나옴
         </div>
       </div>
     </div>
