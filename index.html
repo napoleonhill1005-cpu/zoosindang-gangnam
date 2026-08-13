@@ -713,10 +713,37 @@ html, body {
   background: var(--card-bg);
   border: 1.5px solid #e7d6b3;
   border-radius: 10px;
-  margin-bottom: 6px;
-  padding: 11px 12px 11px 14px;
+  margin-bottom: 5px;
+  padding: 10px 12px 10px 14px;
   cursor: pointer;
 }
+
+/* 체크리스트 그룹 접기 — 제목을 탭하면 항목이 펼쳐진다 */
+.check-wrap .check-group-title {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+.check-wrap .check-group-title::before {
+  content: "▸";
+  font-size: 12px;
+  color: var(--divider);
+  flex-shrink: 0;
+}
+.check-wrap .check-group-title.open::before { content: "▾"; color: var(--gold); }
+.check-wrap .check-group-title .cg-count {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gray);
+  white-space: nowrap;
+}
+.check-wrap .check-group-title.done .cg-count { color: var(--gold); }
+.check-wrap .check-group-title.done .cg-count::after { content: " ✓"; }
+.check-group-body { display: none; padding-top: 2px; }
+.check-group-title.open + .check-group-body { display: block; }
 .check-item:active { background: var(--soft-bg); }
 .check-box {
   flex-shrink: 0;
@@ -4989,7 +5016,38 @@ function updateProgress(wrap) {
   const bar = wrap.querySelector('.check-bar i');
   if (count) count.innerHTML = '<b>' + done + '</b> / ' + total + ' 완료';
   if (bar) bar.style.width = (total ? (done / total) * 100 : 0) + '%';
+  // 그룹별 진행률
+  wrap.querySelectorAll('.check-group-body').forEach(body => {
+    const title = body.previousElementSibling;
+    const t = body.querySelectorAll('.check-item').length;
+    const d = body.querySelectorAll('.check-item.checked').length;
+    const c = title && title.querySelector('.cg-count');
+    if (c) c.textContent = d + ' / ' + t;
+    if (title) title.classList.toggle('done', t > 0 && d === t);
+  });
 }
+
+// 그룹 제목 아래 항목들을 접이식 묶음으로 감싼다 (기본 접힘)
+function buildCheckGroups() {
+  document.querySelectorAll('.check-wrap').forEach(wrap => {
+    let body = null;
+    [...wrap.children].forEach(el => {
+      if (el.classList.contains('list-group-title')) {
+        el.classList.add('check-group-title');
+        const cnt = document.createElement('span');
+        cnt.className = 'cg-count';
+        el.appendChild(cnt);
+        body = document.createElement('div');
+        body.className = 'check-group-body';
+        el.insertAdjacentElement('afterend', body);
+        el.onclick = () => el.classList.toggle('open');
+      } else if (body && !el.classList.contains('check-progress')) {
+        body.appendChild(el);
+      }
+    });
+  });
+}
+buildCheckGroups();
 
 function toggleCheck(el) {
   el.classList.toggle('checked');
