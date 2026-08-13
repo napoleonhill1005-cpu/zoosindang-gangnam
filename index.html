@@ -1125,6 +1125,7 @@ html, body {
       <h1>홀 오픈 매뉴얼</h1>
       <div class="sub">영업 시작 전 준비</div>
     </div>
+    <div class="section-title" style="margin-top:6px;">오전 오픈</div>
     <div class="check-wrap" id="ck-open">
       <div class="check-progress">
         <div class="check-count"><b>0</b> / 0 완료</div>
@@ -1167,6 +1168,32 @@ html, body {
       <div class="check-item" data-ck="open-04" onclick="toggleCheck(this)">
         <span class="check-box"></span>
         <span class="check-text">정문 · 후문 쓰레기 청소<em>눈에 보이는 것 위주로 가볍게</em></span>
+      </div>
+
+      <div class="list-group-title">청소</div>
+      <div class="check-item" data-ck="open-11" onclick="toggleCheck(this)">
+        <span class="check-box"></span>
+        <span class="check-text">화장실 청소 — 10시 40분</span>
+      </div>
+    </div>
+
+    <div class="section-title">오후 오픈</div>
+    <div class="check-wrap" id="ck-open-pm">
+      <div class="check-progress">
+        <div class="check-count"><b>0</b> / 0 완료</div>
+        <div class="check-bar"><i></i></div>
+        <button class="check-reset" onclick="resetChecks(event, 'ck-open-pm')">전체 해제</button>
+      </div>
+      <div class="list-group-title">주류 준비</div>
+      <div class="check-item" data-ck="open-pm-02" onclick="toggleCheck(this)">
+        <span class="check-box"></span>
+        <span class="check-text">복순도가 · 해창막걸리 · 하타 냉장 보관<em>재고가 너무 많으면 물을 밖으로 빼고 넣는다</em></span>
+      </div>
+
+      <div class="list-group-title">청소</div>
+      <div class="check-item" data-ck="open-pm-01" onclick="toggleCheck(this)">
+        <span class="check-box"></span>
+        <span class="check-text">화장실 청소 — 16시 40분</span>
       </div>
     </div>
   </div>
