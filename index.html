@@ -709,12 +709,12 @@ html, body {
 .check-item {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: 10px;
   background: var(--card-bg);
   border: 1.5px solid #e7d6b3;
   border-radius: 10px;
-  margin-bottom: 8px;
-  padding: 14px 16px;
+  margin-bottom: 6px;
+  padding: 11px 12px 11px 14px;
   cursor: pointer;
 }
 .check-item:active { background: var(--soft-bg); }
@@ -732,20 +732,41 @@ html, body {
   min-width: 0;
   font-size: 14.5px;
   font-weight: 600;
-  line-height: 1.5;
+  line-height: 1.45;
   color: var(--ink);
   word-break: keep-all;
 }
 .check-text em {
-  /* inline-block이라야 부모의 취소선이 보조 설명까지 번지지 않는다 */
-  display: inline-block;
+  /* 기본은 숨김 — '설명' 버튼을 눌러야 펼쳐진다.
+     inline-block이라야 부모의 취소선이 보조 설명까지 번지지 않는다 */
+  display: none;
   width: 100%;
-  margin-top: 4px;
+  margin-top: 5px;
   font-size: 12.5px;
   font-style: normal;
   font-weight: 500;
   line-height: 1.55;
   color: var(--gray);
+}
+.check-item.show-desc .check-text em { display: inline-block; }
+.check-desc-btn {
+  flex-shrink: 0;
+  align-self: flex-start;
+  background: none;
+  border: 1px solid var(--divider);
+  color: var(--gray);
+  padding: 3px 9px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  margin-top: 1px;
+}
+.check-item.show-desc .check-desc-btn {
+  background: var(--soft-bg);
+  color: var(--dark-red);
+  border-color: var(--gold);
 }
 .check-item.checked { border-color: var(--gold); }
 .check-item.checked .check-box {
@@ -4880,6 +4901,26 @@ function resetChecks(ev, wrapId) {
   writeChecks(collectChecks());
   updateProgress(wrap);
 }
+
+function toggleDesc(ev, btn) {
+  ev.stopPropagation();   // 항목 체크와 겹치지 않게
+  const item = btn.closest('.check-item');
+  item.classList.toggle('show-desc');
+  btn.textContent = item.classList.contains('show-desc') ? '접기' : '설명';
+}
+
+// 보조 설명(em)이 있는 항목에만 '설명' 버튼을 붙인다
+function injectDescButtons() {
+  document.querySelectorAll('.check-item').forEach(item => {
+    if (!item.querySelector('.check-text em')) return;
+    const btn = document.createElement('button');
+    btn.className = 'check-desc-btn';
+    btn.textContent = '설명';
+    btn.onclick = e => toggleDesc(e, btn);
+    item.appendChild(btn);
+  });
+}
+injectDescButtons();
 
 function loadChecks() {
   const ids = readChecks();
