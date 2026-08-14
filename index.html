@@ -118,7 +118,14 @@ html, body {
 
 /* === 메인 카테고리 (홈 3개 큰 버튼) === */
 .cat-main {
-  padding: 28px 24px;
+  padding: 20px 20px 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.cat-main .cat-txt {
+  flex: 1;
+  min-width: 0;
 }
 .cat-main .cat-name {
   font-size: 20px;
@@ -128,6 +135,24 @@ html, body {
 .cat-main .cat-desc {
   font-size: 13px;
   color: var(--gray);
+}
+.cat-main .cat-thumb-main {
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 1.5px solid var(--divider);
+  background: #000;
+}
+/* 원본 위에 SNS 캡처 글자가 있는 사진은 확대 크롭으로 가린다 */
+span.cat-thumb-main { display: block; overflow: hidden; }
+span.cat-thumb-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.35);
+  transform-origin: 50% 70%;
 }
 .cat-menu-main {
   border-left: 6px solid #5a7a3a;
@@ -982,16 +1007,25 @@ html, body {
     </div>
     <div class="category-list">
       <div class="category-btn cat-main cat-menu-main" onclick="openMainCategory('menu')">
-        <div class="cat-name">메뉴 카테고리</div>
-        <div class="cat-desc">코스 · 요리 · 안주 · 후식</div>
+        <div class="cat-txt">
+          <div class="cat-name">메뉴 카테고리</div>
+          <div class="cat-desc">코스 · 요리 · 안주 · 후식</div>
+        </div>
+        <img class="cat-thumb-main" src="images/그릴드-어향-한우스테이크.webp" alt="" loading="lazy">
       </div>
       <div class="category-btn cat-main cat-liquor-main" onclick="openMainCategory('liquor')">
-        <div class="cat-name">주류 카테고리</div>
-        <div class="cat-desc">칵테일 · 전통주 · 위스키 · 생맥주</div>
+        <div class="cat-txt">
+          <div class="cat-name">주류 카테고리</div>
+          <div class="cat-desc">칵테일 · 전통주 · 위스키 · 생맥주</div>
+        </div>
+        <span class="cat-thumb-main"><img src="images/용.webp" alt="" loading="lazy"></span>
       </div>
-      <div class="category-btn cat-main cat-management-main" onclick="openMainCategory('management')">
-        <div class="cat-name">매장 관리 매뉴얼</div>
-        <div class="cat-desc">홀 · 주방 · 바 관리</div>
+      <div class="category-btn cat-main cat-management-main" onclick="showHallScreen()">
+        <div class="cat-txt">
+          <div class="cat-name">홀 관리 매뉴얼</div>
+          <div class="cat-desc">오픈 · 마감 · 청소 · 진동벨</div>
+        </div>
+        <img class="cat-thumb-main" src="icon-512.png" alt="" loading="lazy">
       </div>
     </div>
     <div class="app-footer">
@@ -1089,35 +1123,10 @@ html, body {
     <div class="glossary-wrap" id="glossary-full"></div>
   </div>
 
-  <!-- ===== 매장 관리 매뉴얼 화면 ===== -->
-  <div class="home-screen" id="management-screen" style="display:none;">
-    <div class="detail-header">
-      <button class="back-btn" onclick="goHome()">← 홈으로</button>
-    </div>
-    <div class="app-title" style="padding-top:8px;">
-      <h1>매장 관리 매뉴얼</h1>
-      <div class="sub">홀 · 주방 · 바 관리</div>
-    </div>
-    <div class="category-list">
-      <div class="category-btn cat-hall" onclick="showHallScreen()">
-        <div class="cat-name">홀 관리 매뉴얼</div>
-        <div class="cat-desc">오픈 · 운영 · 마감 · 청소</div>
-      </div>
-      <div class="category-btn cat-kitchen">
-        <div class="cat-name">주방 관리 매뉴얼</div>
-        <div class="cat-desc">준비 중</div>
-      </div>
-      <div class="category-btn cat-bar-mgmt">
-        <div class="cat-name">바 관리 매뉴얼</div>
-        <div class="cat-desc">준비 중</div>
-      </div>
-    </div>
-  </div>
-
   <!-- ===== 홀 매뉴얼 허브 ===== -->
   <div class="home-screen" id="hall-screen" style="display:none;">
     <div class="detail-header">
-      <button class="back-btn" onclick="openMainCategory('management')">← 매장 관리로</button>
+      <button class="back-btn" onclick="goHome()">← 홈으로</button>
     </div>
     <div class="app-title" style="padding-top:8px;">
       <h1>홀 관리 매뉴얼</h1>
@@ -4840,7 +4849,6 @@ function hideAll() {
   document.getElementById('home-screen').style.display = 'none';
   document.getElementById('menu-screen').style.display = 'none';
   document.getElementById('liquor-screen').style.display = 'none';
-  document.getElementById('management-screen').style.display = 'none';
   document.getElementById('grid-screen').style.display = 'none';
   document.getElementById('classic-grid-screen').style.display = 'none';
   document.getElementById('beer-grid-screen').style.display = 'none';
@@ -4874,8 +4882,6 @@ function openMainCategory(cat) {
     document.getElementById('menu-screen').style.display = 'block';
   } else if (cat === 'liquor') {
     document.getElementById('liquor-screen').style.display = 'block';
-  } else if (cat === 'management') {
-    document.getElementById('management-screen').style.display = 'block';
   }
   window.scrollTo(0, 0);
 }
