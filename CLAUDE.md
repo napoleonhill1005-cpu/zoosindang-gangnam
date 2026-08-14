@@ -6,8 +6,10 @@
 배포처: https://zoosindang-gangnam.vercel.app (GitHub에 push하면 Vercel이 자동 배포)
 
 ## 파일 구조
-- index.html — 앱 전체. HTML + CSS + JS가 한 파일에 들어있음 (약 3,700줄)
+- index.html — 앱 전체. HTML + CSS + JS가 한 파일에 들어있음 (약 4,900줄)
 - manifest.json — PWA 설정
+- sw.js — 오프라인 지원 service worker (index.html은 network-first)
+- images/ — 메뉴 사진 (webp)
 - icon-192.png, icon-512.png, apple-touch-icon.png — 앱 아이콘
 
 ## 기술 스택
@@ -16,10 +18,19 @@
 - 빌드 과정 없음. index.html을 그대로 열면 실행됨
 
 ## 화면 구조
-- 홈 화면(#home-screen) → 카테고리 선택
-- 카테고리 그리드: 12지신, 클래식 칵테일, 생맥주, 전통주, 위스키, 스페셜
-- 각 메뉴는 상세 카드(#detail-N 등)로 펼쳐짐
+- 홈 화면(#home-screen) → 메뉴 / 주류 / 홀 관리 매뉴얼 3개 카테고리 (썸네일 포함)
+- 주류: 12지신, 클래식 칵테일, 생맥주, 전통주, 위스키, 스페셜, 기법 용어 사전
+- 각 메뉴는 상세 카드(#detail-N 등) 또는 아코디언(.list-item + toggleItem)으로 펼쳐짐
 - 화면 전환은 hideAll() + 개별 show 함수로 처리
+
+## 홀 관리 매뉴얼 (2026-08 추가)
+- 허브(#hall-screen) → 오픈 / 마감 / 진동벨 사용법 / 청소 4개 화면
+- 오픈·마감은 체크리스트(.check-wrap): localStorage(zsd-hall-check)에 저장,
+  날짜가 바뀌면 자동 초기화. 진행률 표시 + 그룹 접기(buildCheckGroups)
+- 체크 항목의 data-ck 값은 저장 키이므로 바꾸면 저장된 체크가 풀림.
+  항목 순서를 옮겨도 data-ck는 그대로 둘 것
+- 보조 설명은 .check-text 안 <em> — '설명' 버튼(injectDescButtons)으로 펼침
+- 진동벨·청소 매뉴얼은 아코디언(.list-item) 구성
 
 ## 외부 연동
 - 없음. 바텐더 코멘트(Google Sheets 연동)는 미사용으로 제거됨 (2026-08)
