@@ -675,11 +675,34 @@ span.cat-thumb-main img {
 }
 .cat-technique { border-left: 5px solid var(--note); }
 
-/* === 홀 매뉴얼 (오픈 · 운영 · 마감 · 청소) === */
+/* === 홀 매뉴얼 (오픈 · 마감 · 진동벨 · 청소) === */
 .cat-hall-open    { border-left: 6px solid #4a7a5a; }
 .cat-hall-close   { border-left: 6px solid #7a4a5a; }
 .cat-hall-pager   { border-left: 6px solid #3a6a8a; }
 .cat-hall-clean   { border-left: 6px solid #7a6a3a; }
+
+/* 홈 화면 홀 매뉴얼 바로가기 (2×2) */
+.hall-quick-label {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--gold);
+  padding: 10px 6px 8px;
+  border-bottom: 2px solid var(--divider);
+  margin-bottom: 10px;
+}
+.hall-quick-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.hall-quick { padding: 16px 18px; }
+.hall-quick .cat-name {
+  font-size: 16px;
+  line-height: 1.35;
+  margin-bottom: 0;
+}
 
 .check-wrap { padding: 0 4px 30px; }
 .check-progress {
@@ -1005,12 +1028,22 @@ span.cat-thumb-main img {
         </div>
         <span class="cat-thumb-main"><img src="images/용.webp" alt="" loading="lazy"></span>
       </div>
-      <div class="category-btn cat-main cat-management-main" onclick="showHallScreen()">
-        <div class="cat-txt">
-          <div class="cat-name">홀 관리 매뉴얼</div>
-          <div class="cat-desc">오픈 · 마감 · 청소 · 진동벨</div>
+      <div class="hall-quick-label">홀 관리 매뉴얼</div>
+      <div class="hall-quick-row">
+        <div class="category-btn hall-quick cat-hall-open" onclick="openHallSection('open')">
+          <div class="cat-name">오픈<br>체크리스트</div>
         </div>
-        <img class="cat-thumb-main" src="icon-512.png" alt="" loading="lazy">
+        <div class="category-btn hall-quick cat-hall-close" onclick="openHallSection('close')">
+          <div class="cat-name">마감<br>체크리스트</div>
+        </div>
+      </div>
+      <div class="hall-quick-row">
+        <div class="category-btn hall-quick cat-hall-pager" onclick="openHallSection('pager')">
+          <div class="cat-name">진동벨 시계<br>사용법</div>
+        </div>
+        <div class="category-btn hall-quick cat-hall-clean" onclick="openHallSection('clean')">
+          <div class="cat-name">홀 청소<br>매뉴얼</div>
+        </div>
       </div>
     </div>
     <div class="app-footer">
@@ -1108,39 +1141,10 @@ span.cat-thumb-main img {
     <div class="glossary-wrap" id="glossary-full"></div>
   </div>
 
-  <!-- ===== 홀 매뉴얼 허브 ===== -->
-  <div class="home-screen" id="hall-screen" style="display:none;">
-    <div class="detail-header">
-      <button class="back-btn" onclick="goHome()">← 홈으로</button>
-    </div>
-    <div class="app-title" style="padding-top:8px;">
-      <h1>홀 관리 매뉴얼</h1>
-      <div class="sub">오픈 · 운영 · 마감 · 청소</div>
-    </div>
-    <div class="category-list">
-      <div class="category-btn cat-hall-open" onclick="openHallSection('open')">
-        <div class="cat-name">홀 오픈 매뉴얼</div>
-        <div class="cat-desc">영업 시작 전 준비 체크리스트</div>
-      </div>
-      <div class="category-btn cat-hall-close" onclick="openHallSection('close')">
-        <div class="cat-name">홀 마감 매뉴얼</div>
-        <div class="cat-desc">마감 순서 · 좌석 안내 · 정리 체크리스트</div>
-      </div>
-      <div class="category-btn cat-hall-pager" onclick="openHallSection('pager')">
-        <div class="cat-name">진동벨 시계 사용법</div>
-        <div class="cat-desc">링고 페이저 GB-650 · 충전 · 설정</div>
-      </div>
-      <div class="category-btn cat-hall-clean" onclick="openHallSection('clean')">
-        <div class="cat-name">홀 청소 매뉴얼</div>
-        <div class="cat-desc">화장실 청소 순서 · 중간청소</div>
-      </div>
-    </div>
-  </div>
-
   <!-- ===== 홀 오픈 매뉴얼 ===== -->
   <div class="grid-screen" id="hall-open-screen" style="display:none;">
     <div class="detail-header">
-      <button class="back-btn" onclick="showHallScreen()">← 홀 매뉴얼로</button>
+      <button class="back-btn" onclick="goHome()">← 홈으로</button>
     </div>
     <div class="app-title" style="padding-top:8px;">
       <h1>홀 오픈 매뉴얼</h1>
@@ -1222,7 +1226,7 @@ span.cat-thumb-main img {
   <!-- ===== 홀 마감 매뉴얼 ===== -->
   <div class="grid-screen" id="hall-close-screen" style="display:none;">
     <div class="detail-header">
-      <button class="back-btn" onclick="showHallScreen()">← 홀 매뉴얼로</button>
+      <button class="back-btn" onclick="goHome()">← 홈으로</button>
     </div>
     <div class="app-title" style="padding-top:8px;">
       <h1>홀 마감 매뉴얼</h1>
@@ -1416,7 +1420,7 @@ span.cat-thumb-main img {
   <!-- ===== 진동벨 시계 사용법 ===== -->
   <div class="grid-screen" id="hall-pager-screen" style="display:none;">
     <div class="detail-header">
-      <button class="back-btn" onclick="showHallScreen()">← 홀 매뉴얼로</button>
+      <button class="back-btn" onclick="goHome()">← 홈으로</button>
     </div>
     <div class="app-title" style="padding-top:8px;">
       <h1>진동벨 시계 사용법</h1>
@@ -1622,7 +1626,7 @@ span.cat-thumb-main img {
   <!-- ===== 홀 주기적 청소 매뉴얼 ===== -->
   <div class="grid-screen" id="hall-clean-screen" style="display:none;">
     <div class="detail-header">
-      <button class="back-btn" onclick="showHallScreen()">← 홀 매뉴얼로</button>
+      <button class="back-btn" onclick="goHome()">← 홈으로</button>
     </div>
     <div class="app-title" style="padding-top:8px;">
       <h1>홀 청소 매뉴얼</h1>
@@ -4841,7 +4845,6 @@ function hideAll() {
   document.getElementById('whisky-screen').style.display = 'none';
   document.getElementById('special-screen').style.display = 'none';
   document.getElementById('technique-screen').style.display = 'none';
-  document.getElementById('hall-screen').style.display = 'none';
   document.getElementById('hall-open-screen').style.display = 'none';
   document.getElementById('hall-close-screen').style.display = 'none';
   document.getElementById('hall-pager-screen').style.display = 'none';
@@ -4961,12 +4964,6 @@ function openFoodCategory(cat) {
 }
 
 // === 홀 매뉴얼 ===
-function showHallScreen() {
-  hideAll();
-  document.getElementById('hall-screen').style.display = 'block';
-  window.scrollTo(0, 0);
-}
-
 function openHallSection(sec) {
   hideAll();
   document.getElementById('hall-' + sec + '-screen').style.display = 'block';
